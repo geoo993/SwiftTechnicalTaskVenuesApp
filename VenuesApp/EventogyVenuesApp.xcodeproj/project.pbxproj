@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3472228EEA2900C7A209 /* AppDelegate.swift */; };
-		C7EE3475228EEA2900C7A209 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3474228EEA2900C7A209 /* ViewController.swift */; };
+		C7EE3475228EEA2900C7A209 /* VenuesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */; };
 		C7EE3478228EEA2900C7A209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE3476228EEA2900C7A209 /* Main.storyboard */; };
 		C7EE347A228EEA2A00C7A209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EE3479228EEA2A00C7A209 /* Assets.xcassets */; };
 		C7EE347D228EEA2A00C7A209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE347B228EEA2A00C7A209 /* LaunchScreen.storyboard */; };
-		C7EE3488228EEA2A00C7A209 /* VenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* VenuesAppTests.swift */; };
-		C7EE3493228EEA2B00C7A209 /* VenuesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3492228EEA2B00C7A209 /* VenuesAppUITests.swift */; };
+		C7EE3488228EEA2A00C7A209 /* EventogyVenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */; };
+		C7EE3493228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */; };
+		C7EE34A7228F2D9800C7A209 /* VenuesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */; };
+		C7EE34C1228F354100C7A209 /* NSAttributedString+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE34C0228F354100C7A209 /* NSAttributedString+Ext.swift */; };
+		C7EE34C3228F39CE00C7A209 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE34C2228F39CE00C7A209 /* UIColor+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,19 +37,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C7EE346F228EEA2900C7A209 /* VenuesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VenuesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EE346F228EEA2900C7A209 /* EventogyVenuesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventogyVenuesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE3472228EEA2900C7A209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C7EE3474228EEA2900C7A209 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesMapViewController.swift; sourceTree = "<group>"; };
 		C7EE3477228EEA2900C7A209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C7EE3479228EEA2A00C7A209 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7EE347C228EEA2A00C7A209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7EE347E228EEA2A00C7A209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7EE3483228EEA2A00C7A209 /* VenuesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VenuesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7EE3487228EEA2A00C7A209 /* VenuesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesAppTests.swift; sourceTree = "<group>"; };
+		C7EE3483228EEA2A00C7A209 /* EventogyVenuesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventogyVenuesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventogyVenuesAppTests.swift; sourceTree = "<group>"; };
 		C7EE3489228EEA2B00C7A209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7EE348E228EEA2B00C7A209 /* VenuesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VenuesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7EE3492228EEA2B00C7A209 /* VenuesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesAppUITests.swift; sourceTree = "<group>"; };
+		C7EE348E228EEA2B00C7A209 /* EventogyVenuesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventogyVenuesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventogyVenuesAppUITests.swift; sourceTree = "<group>"; };
 		C7EE3494228EEA2B00C7A209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesResultViewController.swift; sourceTree = "<group>"; };
+		C7EE34C0228F354100C7A209 /* NSAttributedString+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Ext.swift"; sourceTree = "<group>"; };
+		C7EE34C2228F39CE00C7A209 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,19 +83,19 @@
 		C7EE3466228EEA2900C7A209 = {
 			isa = PBXGroup;
 			children = (
-				C7EE3471228EEA2900C7A209 /* VenuesApp */,
-				C7EE3486228EEA2A00C7A209 /* VenuesAppTests */,
-				C7EE3491228EEA2B00C7A209 /* VenuesAppUITests */,
 				C7EE3470228EEA2900C7A209 /* Products */,
+				C7EE3471228EEA2900C7A209 /* VenuesApp */,
+				C7EE3486228EEA2A00C7A209 /* EventogyVenuesAppTests */,
+				C7EE3491228EEA2B00C7A209 /* EventogyVenuesAppUITests */,
 			);
 			sourceTree = "<group>";
 		};
 		C7EE3470228EEA2900C7A209 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE346F228EEA2900C7A209 /* VenuesApp.app */,
-				C7EE3483228EEA2A00C7A209 /* VenuesAppTests.xctest */,
-				C7EE348E228EEA2B00C7A209 /* VenuesAppUITests.xctest */,
+				C7EE346F228EEA2900C7A209 /* EventogyVenuesApp.app */,
+				C7EE3483228EEA2A00C7A209 /* EventogyVenuesAppTests.xctest */,
+				C7EE348E228EEA2B00C7A209 /* EventogyVenuesAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,40 +103,91 @@
 		C7EE3471228EEA2900C7A209 /* VenuesApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7EE34A5228F1A7500C7A209 /* Extensions */,
+				C7EE34A2228F1A4200C7A209 /* Model */,
+				C7EE34A4228F1A5000C7A209 /* Services */,
+				C7EE34A1228F1A3A00C7A209 /* View */,
+				C7EE34A0228F1A2E00C7A209 /* ViewModel */,
+				C7EE34A3228F1A4700C7A209 /* SupportingFiles */,
+			);
+			path = VenuesApp;
+			sourceTree = "<group>";
+		};
+		C7EE3486228EEA2A00C7A209 /* EventogyVenuesAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */,
+				C7EE3489228EEA2B00C7A209 /* Info.plist */,
+			);
+			path = EventogyVenuesAppTests;
+			sourceTree = "<group>";
+		};
+		C7EE3491228EEA2B00C7A209 /* EventogyVenuesAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */,
+				C7EE3494228EEA2B00C7A209 /* Info.plist */,
+			);
+			path = EventogyVenuesAppUITests;
+			sourceTree = "<group>";
+		};
+		C7EE34A0228F1A2E00C7A209 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C7EE34A1228F1A3A00C7A209 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */,
+				C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C7EE34A2228F1A4200C7A209 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7EE34A3228F1A4700C7A209 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				C7EE3472228EEA2900C7A209 /* AppDelegate.swift */,
-				C7EE3474228EEA2900C7A209 /* ViewController.swift */,
 				C7EE3476228EEA2900C7A209 /* Main.storyboard */,
 				C7EE3479228EEA2A00C7A209 /* Assets.xcassets */,
 				C7EE347B228EEA2A00C7A209 /* LaunchScreen.storyboard */,
 				C7EE347E228EEA2A00C7A209 /* Info.plist */,
 			);
-			path = VenuesApp;
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		C7EE3486228EEA2A00C7A209 /* VenuesAppTests */ = {
+		C7EE34A4228F1A5000C7A209 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE3487228EEA2A00C7A209 /* VenuesAppTests.swift */,
-				C7EE3489228EEA2B00C7A209 /* Info.plist */,
 			);
-			path = VenuesAppTests;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		C7EE3491228EEA2B00C7A209 /* VenuesAppUITests */ = {
+		C7EE34A5228F1A7500C7A209 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE3492228EEA2B00C7A209 /* VenuesAppUITests.swift */,
-				C7EE3494228EEA2B00C7A209 /* Info.plist */,
+				C7EE34C0228F354100C7A209 /* NSAttributedString+Ext.swift */,
+				C7EE34C2228F39CE00C7A209 /* UIColor+Ext.swift */,
 			);
-			path = VenuesAppUITests;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C7EE346E228EEA2900C7A209 /* VenuesApp */ = {
+		C7EE346E228EEA2900C7A209 /* EventogyVenuesApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7EE3497228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesApp" */;
+			buildConfigurationList = C7EE3497228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesApp" */;
 			buildPhases = (
 				C7EE346B228EEA2900C7A209 /* Sources */,
 				C7EE346C228EEA2900C7A209 /* Frameworks */,
@@ -140,14 +197,14 @@
 			);
 			dependencies = (
 			);
-			name = VenuesApp;
+			name = EventogyVenuesApp;
 			productName = VenuesApp;
-			productReference = C7EE346F228EEA2900C7A209 /* VenuesApp.app */;
+			productReference = C7EE346F228EEA2900C7A209 /* EventogyVenuesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C7EE3482228EEA2A00C7A209 /* VenuesAppTests */ = {
+		C7EE3482228EEA2A00C7A209 /* EventogyVenuesAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7EE349A228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesAppTests" */;
+			buildConfigurationList = C7EE349A228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesAppTests" */;
 			buildPhases = (
 				C7EE347F228EEA2A00C7A209 /* Sources */,
 				C7EE3480228EEA2A00C7A209 /* Frameworks */,
@@ -158,14 +215,14 @@
 			dependencies = (
 				C7EE3485228EEA2A00C7A209 /* PBXTargetDependency */,
 			);
-			name = VenuesAppTests;
+			name = EventogyVenuesAppTests;
 			productName = VenuesAppTests;
-			productReference = C7EE3483228EEA2A00C7A209 /* VenuesAppTests.xctest */;
+			productReference = C7EE3483228EEA2A00C7A209 /* EventogyVenuesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C7EE348D228EEA2B00C7A209 /* VenuesAppUITests */ = {
+		C7EE348D228EEA2B00C7A209 /* EventogyVenuesAppUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7EE349D228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesAppUITests" */;
+			buildConfigurationList = C7EE349D228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesAppUITests" */;
 			buildPhases = (
 				C7EE348A228EEA2B00C7A209 /* Sources */,
 				C7EE348B228EEA2B00C7A209 /* Frameworks */,
@@ -176,9 +233,9 @@
 			dependencies = (
 				C7EE3490228EEA2B00C7A209 /* PBXTargetDependency */,
 			);
-			name = VenuesAppUITests;
+			name = EventogyVenuesAppUITests;
 			productName = VenuesAppUITests;
-			productReference = C7EE348E228EEA2B00C7A209 /* VenuesAppUITests.xctest */;
+			productReference = C7EE348E228EEA2B00C7A209 /* EventogyVenuesAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -204,7 +261,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C7EE346A228EEA2900C7A209 /* Build configuration list for PBXProject "VenuesApp" */;
+			buildConfigurationList = C7EE346A228EEA2900C7A209 /* Build configuration list for PBXProject "EventogyVenuesApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -217,9 +274,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C7EE346E228EEA2900C7A209 /* VenuesApp */,
-				C7EE3482228EEA2A00C7A209 /* VenuesAppTests */,
-				C7EE348D228EEA2B00C7A209 /* VenuesAppUITests */,
+				C7EE346E228EEA2900C7A209 /* EventogyVenuesApp */,
+				C7EE3482228EEA2A00C7A209 /* EventogyVenuesAppTests */,
+				C7EE348D228EEA2B00C7A209 /* EventogyVenuesAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,8 +313,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7EE3475228EEA2900C7A209 /* ViewController.swift in Sources */,
+				C7EE3475228EEA2900C7A209 /* VenuesMapViewController.swift in Sources */,
+				C7EE34A7228F2D9800C7A209 /* VenuesResultViewController.swift in Sources */,
+				C7EE34C3228F39CE00C7A209 /* UIColor+Ext.swift in Sources */,
 				C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */,
+				C7EE34C1228F354100C7A209 /* NSAttributedString+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7EE3488228EEA2A00C7A209 /* VenuesAppTests.swift in Sources */,
+				C7EE3488228EEA2A00C7A209 /* EventogyVenuesAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7EE3493228EEA2B00C7A209 /* VenuesAppUITests.swift in Sources */,
+				C7EE3493228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +342,12 @@
 /* Begin PBXTargetDependency section */
 		C7EE3485228EEA2A00C7A209 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C7EE346E228EEA2900C7A209 /* VenuesApp */;
+			target = C7EE346E228EEA2900C7A209 /* EventogyVenuesApp */;
 			targetProxy = C7EE3484228EEA2A00C7A209 /* PBXContainerItemProxy */;
 		};
 		C7EE3490228EEA2B00C7A209 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C7EE346E228EEA2900C7A209 /* VenuesApp */;
+			target = C7EE346E228EEA2900C7A209 /* EventogyVenuesApp */;
 			targetProxy = C7EE348F228EEA2B00C7A209 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -433,7 +493,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesApp/Info.plist;
+				DEVELOPMENT_TEAM = 4Q93294747;
+				INFOPLIST_FILE = VenuesApp/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +511,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesApp/Info.plist;
+				DEVELOPMENT_TEAM = 4Q93294747;
+				INFOPLIST_FILE = VenuesApp/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,7 +530,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesAppTests/Info.plist;
+				INFOPLIST_FILE = EventogyVenuesAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,7 +540,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VenuesApp.app/VenuesApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EventogyVenuesApp.app/EventogyVenuesApp";
 			};
 			name = Debug;
 		};
@@ -488,7 +550,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesAppTests/Info.plist;
+				INFOPLIST_FILE = EventogyVenuesAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -498,7 +560,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VenuesApp.app/VenuesApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EventogyVenuesApp.app/EventogyVenuesApp";
 			};
 			name = Release;
 		};
@@ -507,7 +569,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesAppUITests/Info.plist;
+				INFOPLIST_FILE = EventogyVenuesAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -526,7 +588,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = VenuesAppUITests/Info.plist;
+				INFOPLIST_FILE = EventogyVenuesAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +605,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C7EE346A228EEA2900C7A209 /* Build configuration list for PBXProject "VenuesApp" */ = {
+		C7EE346A228EEA2900C7A209 /* Build configuration list for PBXProject "EventogyVenuesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7EE3495228EEA2B00C7A209 /* Debug */,
@@ -552,7 +614,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7EE3497228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesApp" */ = {
+		C7EE3497228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7EE3498228EEA2B00C7A209 /* Debug */,
@@ -561,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7EE349A228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesAppTests" */ = {
+		C7EE349A228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7EE349B228EEA2B00C7A209 /* Debug */,
@@ -570,7 +632,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7EE349D228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "VenuesAppUITests" */ = {
+		C7EE349D228EEA2B00C7A209 /* Build configuration list for PBXNativeTarget "EventogyVenuesAppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7EE349E228EEA2B00C7A209 /* Debug */,

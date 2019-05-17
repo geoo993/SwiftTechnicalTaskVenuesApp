@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SV9-p4-q7L">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="yNC-Z9-yCB">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationController" id="SV9-p4-q7L" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="DIV-P6-qNe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2104627788066864" green="0.32550042867660522" blue="0.50811976194381714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uQM-h2-acS" kind="relationship" relationship="rootViewController" id="PVt-Rd-7cy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vne-ib-Z5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-638" y="133"/>
+        </scene>
+        <!--Venues-->
+        <scene sceneID="S0G-2c-Scj">
+            <objects>
+                <viewController storyboardIdentifier="VenuesMapViewController" id="uQM-h2-acS" customClass="VenuesMapViewController" customModule="EventogyVenuesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rI2-KT-Gg2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9rf-In-ZUG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="722"/>
+                                <connections>
+                                    <outlet property="delegate" destination="uQM-h2-acS" id="gX4-Fg-GNu"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9rf-In-ZUG" firstAttribute="top" secondItem="0Ru-ft-RKj" secondAttribute="top" id="3Ne-6X-0YG"/>
+                            <constraint firstItem="0Ru-ft-RKj" firstAttribute="trailing" secondItem="9rf-In-ZUG" secondAttribute="trailing" id="WOy-8C-BaN"/>
+                            <constraint firstItem="9rf-In-ZUG" firstAttribute="leading" secondItem="0Ru-ft-RKj" secondAttribute="leading" id="tUr-qN-1de"/>
+                            <constraint firstItem="9rf-In-ZUG" firstAttribute="bottom" secondItem="0Ru-ft-RKj" secondAttribute="bottom" id="vOX-o1-zuY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0Ru-ft-RKj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Venues" id="A3M-Us-6nj"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="9rf-In-ZUG" id="7YU-Gh-26T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RWj-zq-vvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="133"/>
+        </scene>
+        <!--Venues Result View Controller-->
+        <scene sceneID="aiJ-Hf-G3A">
+            <objects>
+                <viewController storyboardIdentifier="VenuesResultViewController" id="sYU-XY-Wa9" customClass="VenuesResultViewController" customModule="EventogyVenuesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AgX-29-YFC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8ON-GX-HMR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OptionCell" textLabel="uV8-dG-Ur0" style="IBUITableViewCellStyleDefault" id="BdQ-Ae-MLe">
+                                        <rect key="frame" x="0.0" y="22" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BdQ-Ae-MLe" id="YLf-Mv-ooF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Option" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uV8-dG-Ur0">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="sYU-XY-Wa9" id="bgQ-wS-BL4"/>
+                                    <outlet property="delegate" destination="sYU-XY-Wa9" id="MgH-MK-tKw"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8ON-GX-HMR" firstAttribute="leading" secondItem="nog-er-W3W" secondAttribute="leading" id="An1-Fv-Y79"/>
+                            <constraint firstItem="nog-er-W3W" firstAttribute="bottom" secondItem="8ON-GX-HMR" secondAttribute="bottom" id="cm2-jY-woA"/>
+                            <constraint firstItem="8ON-GX-HMR" firstAttribute="trailing" secondItem="nog-er-W3W" secondAttribute="trailing" id="eFS-dk-P4H"/>
+                            <constraint firstItem="8ON-GX-HMR" firstAttribute="top" secondItem="nog-er-W3W" secondAttribute="top" id="kgi-yP-7d7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nog-er-W3W"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ARh-j7-E2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1287" y="133"/>
+        </scene>
+    </scenes>
+</document>

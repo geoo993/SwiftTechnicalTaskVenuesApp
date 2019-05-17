@@ -1,6 +1,6 @@
 //
-//  VenuesAppTests.swift
-//  VenuesAppTests
+//  EventogyVenuesAppTests.swift
+//  EventogyVenuesAppTests
 //
 //  Created by GEORGE QUENTIN on 17/05/2019.
 //  Copyright © 2019 GEORGE QUENTIN. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import VenuesApp
 
-class VenuesAppTests: XCTestCase {
+class EventogyVenuesAppTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
