@@ -12,6 +12,8 @@
 		C7EE1ACE228FE1C0007FA8BA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1ACD228FE1C0007FA8BA /* LocationManager.swift */; };
 		C7EE1AD0228FE78D007FA8BA /* VenueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1ACF228FE78D007FA8BA /* VenueAnnotation.swift */; };
 		C7EE1AD2228FE980007FA8BA /* VenuesMapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1AD1228FE980007FA8BA /* VenuesMapSearchViewController.swift */; };
+		C7EE1AD5228FF9F0007FA8BA /* PersistencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1AD3228FF9EF007FA8BA /* PersistencyManager.swift */; };
+		C7EE1AD8228FFA1D007FA8BA /* FoursquareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1AD7228FFA1D007FA8BA /* FoursquareAPI.swift */; };
 		C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3472228EEA2900C7A209 /* AppDelegate.swift */; };
 		C7EE3475228EEA2900C7A209 /* VenuesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */; };
 		C7EE3478228EEA2900C7A209 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE3476228EEA2900C7A209 /* Main.storyboard */; };
@@ -47,6 +49,8 @@
 		C7EE1ACD228FE1C0007FA8BA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C7EE1ACF228FE78D007FA8BA /* VenueAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAnnotation.swift; sourceTree = "<group>"; };
 		C7EE1AD1228FE980007FA8BA /* VenuesMapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesMapSearchViewController.swift; sourceTree = "<group>"; };
+		C7EE1AD3228FF9EF007FA8BA /* PersistencyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistencyManager.swift; sourceTree = "<group>"; };
+		C7EE1AD7228FFA1D007FA8BA /* FoursquareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquareAPI.swift; sourceTree = "<group>"; };
 		C7EE346F228EEA2900C7A209 /* EventogyVenuesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventogyVenuesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE3472228EEA2900C7A209 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesMapViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		C7EE34A4228F1A5000C7A209 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C7EE1AD3228FF9EF007FA8BA /* PersistencyManager.swift */,
+				C7EE1AD7228FFA1D007FA8BA /* FoursquareAPI.swift */,
 				C7EE1ACD228FE1C0007FA8BA /* LocationManager.swift */,
 			);
 			path = Services;
@@ -329,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7EE1AD0228FE78D007FA8BA /* VenueAnnotation.swift in Sources */,
+				C7EE1AD8228FFA1D007FA8BA /* FoursquareAPI.swift in Sources */,
 				C7EE3475228EEA2900C7A209 /* VenuesMapViewController.swift in Sources */,
 				C7EE34A7228F2D9800C7A209 /* VenuesResultViewController.swift in Sources */,
 				C7EE34C3228F39CE00C7A209 /* UIColor+Ext.swift in Sources */,
@@ -338,6 +345,7 @@
 				C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */,
 				C7EE1ACA228FDCCE007FA8BA /* VenueOverlay.swift in Sources */,
 				C7EE34C1228F354100C7A209 /* NSAttributedString+Ext.swift in Sources */,
+				C7EE1AD5228FF9F0007FA8BA /* PersistencyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
