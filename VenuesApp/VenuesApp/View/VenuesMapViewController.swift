@@ -9,105 +9,93 @@
 import UIKit
 import MapKit
 
-class VenuesMapViewController: UIViewController {
+class VenuesMapViewController: VenuesMapSearchViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    
     // Mark: - Main properties
-    let mainColor = UIColor.eventogyTheme
-    var venues : [String]?
     
-    // Mark: - Search bar
-    let search = UISearchController(searchResultsController: nil)
-    var searchBarFiltered:[String] = []
+    
+    // Mark: Locatiion properties
+    private let locationManager = LocationManager.shared
+    private let regionRadius: CLLocationDistance = 1000
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
-        setupSearchBar()
+        setupMapView()
+        setupLocations()
     }
     
-    func setupNavBar() {
-        if let navigationController = self.navigationController {
-            navigationController.navigationItem.largeTitleDisplayMode = .never
-            navigationController.navigationBar.barTintColor = mainColor
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkLocationAuthorizationStatus()
+    }
+    
+    func setupMapView() {
+        // Set the map view's delegate
+        mapView.delegate = self
+        
+        // Allow the map to display the user's location
+        mapView.showsUserLocation = true
+        mapView.setUserTrackingMode(.follow, animated: true)
+        
+        
+        //mapView.setRegion(region, animated: true)
+        //mapView.add(polyLine())
+        //mapView.addOverlays(multicolorPolyline())
+        
+    }
+    
+    func setupLocations() {
+        locationManager.delegate = self
+    }
+    
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
-
-    func setupSearchBar() {
-        search.searchBar.delegate = self
-        search.searchBar.placeholder = "Search for..."
-        search.searchBar.backgroundColor = mainColor
-        search.searchBar.barTintColor = mainColor
-        search.searchBar.barStyle = .black
-        search.searchBar.tintColor = .white
-        search.obscuresBackgroundDuringPresentation = false
-        self.definesPresentationContext = true
-        self.navigationItem.searchController = search
-    }
     
-    func searchVenues(of place: String) {
-        
-    }
-    
-    func filterVenues(for searchText: String) {
-        searchBarFiltered = venues?
-            .filter( { $0.lowercased().contains( searchText.lowercased() )}) ?? [String]()
-        
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius,
+                                                  longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 
 }
 
-// MARK: UISearchBarDelegate
-extension VenuesMapViewController : UISearchBarDelegate {
+// MARK: MapView Delegate
+extension VenuesMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+       
+        return MKOverlayRenderer(overlay: overlay)
+    }
 
-    /// Show Cancel button
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(true, animated: true)
-    }
-    
-    /// Stop editing search bar
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
-        dismissKeyboard(with: searchBar)
-    }
-    
-    /// Hide Cancel
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
-    {
-        searchBar.setShowsCancelButton(false, animated: true)
-        dismissKeyboard(with: searchBar)
-        
-        guard let place = searchBar.text else {
-            //Notification "White spaces are not permitted"
-            return
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        for annotationView in views {
+            if annotationView.annotation is MKUserLocation {
+            }
         }
-        
-        searchVenues(of: place)
-     
     }
     
-    /// Cancel Search and clear textfield
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.setShowsCancelButton(false, animated: true)
-        searchBar.text = String()
-        dismissKeyboard(with: searchBar)
-        
-        // Remove focus from the search bar.
-        searchBar.endEditing(true)
+    func addHeadingViewToAnnotationView(annotationView: MKAnnotationView) {
+
+    }
+
+}
+
+
+// MARK: - CLLocationManagerDelegate
+extension VenuesMapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
     }
     
-    /// Update when textfield changes
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterVenues(for: searchText)
-    }
-    
-    /// dismiss keyboard (run in main thread)
-    func dismissKeyboard(with view: UIView) {
-        DispatchQueue.main.async {
-            view.resignFirstResponder()
-        }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
     }
 }

@@ -21,13 +21,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Requires Access To Update Your Location</string>
+	<string>By accessing your location, this app will find you best venues to go to.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Requires Access To Update Your Location</string>
+	<string>By accessing your location, this app will find you best venues to go to.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Requires Access To Update Your Location</string>
+	<string>By accessing your location, this app will find you best venues to go to.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Requires Access To Update Your Location</string>
+	<string>By accessing your location, this app will find you best venues to go to.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
