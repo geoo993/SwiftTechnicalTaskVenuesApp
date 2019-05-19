@@ -14,7 +14,8 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     // Mark: - Main properties
-    
+    // the maximum span radius for Foursquare is 100,000 meters.
+    private let spanDistance = Measurement<UnitLength>(value: 0.8, unit: .miles)
     
     // Mark: Locatiion properties
     private let locationManager = LocationManager.shared
@@ -83,31 +84,47 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     
     // MARK: Fetch venues data at location
     func searchVenues(at location: CLLocation) {
-        FoursquareAPI.shared.fetchVenues(at: location.coordinate, completion: { [weak self] venuesData in
+        let metersRadius = spanDistance.converted(to: .meters).value
+        FoursquareAPI.shared.fetchVenues(with: metersRadius, at: location.coordinate, completion: { [weak self] venuesData in
             guard let this = self else { return }
             for venue in venuesData {
-                print(venue.summary)
+                print(venue.description)
+                this.annotate(venue: venue)
             }
+            this.updateVenues(with: venuesData)
         })
     }
     
     // MARK: Center user on region
     func centerOnRegion(with location: CLLocation) {
-//        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-//                                                  latitudinalMeters: regionRadius,
-//                                                  longitudinalMeters: regionRadius)
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        /*
+         struct MKCoordinateSpan
+         You use the delta values in this structure to indicate the desired zoom level of the map, with smaller delta values corresponding to a higher zoom level.
+         
+         var longitudeDelta: CLLocationDegrees
+         The amount of east-to-west distance (measured in degrees) to display for the map region.
+         The number of kilometers spanned by a longitude range varies based on the current latitude.
+         For example, one degree of longitude spans a distance of approximately 111 kilometers (69 miles) at the equator but shrinks to 0 kilometers at the poles.
+         
+         var latitudeDelta: CLLocationDegrees
+         The amount of north-to-south distance (measured in degrees) to display on the map.
+         Unlike longitudinal distances, which vary based on the latitude, one degree of latitude is always approximately 111 kilometers (69 miles).
+ */
+        let spanKilometers = spanDistance.converted(to: .kilometers).value
+        let span = MKCoordinateSpan(latitudeDelta: spanKilometers.kilometersToEquatorLatitudeDegrees,
+                                    longitudeDelta: spanKilometers.kilometersToPoleLatitudeDegrees)
         let region = MKCoordinateRegion(center: location.coordinate, span: span)
+        
         mapView.setRegion(region, animated: true)
         
         searchVenues(at: location)
     }
     
-    func annotate(on location: CLLocation) {
+    func annotate(venue: Venue) {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = location.coordinate
-        annotation.title = "George"
-        annotation.subtitle = "Current location"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
+        annotation.title = venue.name
+        annotation.subtitle = venue.categories.first?.name ?? ""
         mapView.addAnnotation(annotation)
     }
 
@@ -150,8 +167,6 @@ extension VenuesMapViewController: CLLocationManagerDelegate {
                 centerOnRegion(with: userLocation)
             }
         }
-        
-        
         
     }
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

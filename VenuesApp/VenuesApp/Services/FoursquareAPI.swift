@@ -21,7 +21,6 @@ final class FoursquareAPI {
     private let CLIENT_ID = "24YBQ3FNIYLF2XGRUIJPRI3M1TKLHPRUK5BUNCGQJEO3KA12"
     private let CLIENT_SECRET = "TC1RV2V1T2U1OLRUBL1EAAO1EB3DNRGO1SBUEML4SADWWCEY"
     private let VERSION = "20180323"
-    private let LIMIT = "\(1)"
     private let persistencyManager = PersistencyManager()
     private init() {
         // Get data of transactions
@@ -29,6 +28,10 @@ final class FoursquareAPI {
             .addObserver(self, selector: #selector(downloadTransactionData(with:)), name: .downloadImageNotification, object: nil)
     }
     
+    private var placeHolderVenue: [String: Any] {
+        return ["id":"", "name":"", "categories": Category(name: "", iconUrl: ""),
+                "country":"", "latitude":0.0, "longitude":0.0] as [String : Any]
+    }
     // MARK: - mock Venues data
     func mockVenueData() -> [Venue] {
         // Venue(data: "id":"", "name":"", "category":"", "country":"", "iconUrl":"", "description":"", "latitude":0.0, "longitude":0.0)
@@ -45,19 +48,19 @@ final class FoursquareAPI {
     private enum SearchType {
         case venuesInArea, venuesOfInterest
     }
-    func fetchVenues(at location: CLLocationCoordinate2D, completion: @escaping ([Venue]) -> () ) {
+    func fetchVenues(with spanRadius: Double, at location: CLLocationCoordinate2D, completion: @escaping ([Venue]) -> () ) {
         let urlString =
         "https://api.foursquare.com/v2/venues/search" +
-        "?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=\(VERSION)&limit=\(LIMIT)" +
-        "&ll=\(location.latitude),\(location.longitude)"
+        "?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=\(VERSION)&limit=\(50)" +
+        "&ll=\(location.latitude),\(location.longitude)&radius=\(spanRadius)&intent=checkin"
         fetchVenues(with: urlString, type: .venuesInArea, completion: completion)
     }
     
-    func fetchVenues(using query: String, at location: CLLocationCoordinate2D, completion: @escaping ([Venue]) -> () ) {
+    func fetchVenues(using query: String, with spanRadius: Double, at location: CLLocationCoordinate2D, completion: @escaping ([Venue]) -> () ) {
         let urlString =
         "https://api.foursquare.com/v2/venues/search" +
-        "?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=\(VERSION)&limit=\(LIMIT)" +
-        "&ll=\(location.latitude),\(location.longitude)&query=\(query)"
+        "?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=\(VERSION)&limit=\(10)" +
+        "&ll=\(location.latitude),\(location.longitude)&radius=\(spanRadius)&checkin=browse&query=\(query)"
         fetchVenues(with: urlString, type: .venuesOfInterest, completion: completion)
     }
     
@@ -90,9 +93,7 @@ final class FoursquareAPI {
                     else {
                         fatalError("JSON decoding error of venues locations.")
                 }
-      
-                // 5
-                // Venue(data: "id":"", "name":"", "category":"", "country":"", "iconUrl":"", "description":"", "latitude":0.0, "longitude":0.0)
+                
                 var venues = [Venue]()
                 switch type {
                 case .venuesInArea: this.getVenuesOfArea(with: &venues, response: venuesResponse)
@@ -111,7 +112,7 @@ final class FoursquareAPI {
     
     private func getVenuesOfArea(with venues: inout [Venue], response: [String: Any]) {
         for dict in response["venues"] as! [[String: AnyObject]] {
-            var data = [String: Any]()
+            var data = placeHolderVenue
             data["id"] = dict["id"] as! String
             data["name"] = dict["name"] as! String
             var categories = [Category]()
@@ -124,9 +125,6 @@ final class FoursquareAPI {
                 }
             }
             data["categories"] = categories
-            if let hereNow = dict["hereNow"] as? [String: AnyObject] {
-                data["description"] = hereNow["summary"] as! String
-            }
             if let location = dict["location"] as? [String: AnyObject] {
                 data["country"] = location["country"] as! String
                 data["latitude"] = location["lat"] as! Double
@@ -146,10 +144,11 @@ final class FoursquareAPI {
     @objc func downloadTransactionData(with notification: Notification) {
         guard let userInfo = notification.userInfo,
             let imageView = userInfo["imageView"] as? UIImageView,
-            let imageUrl = userInfo["imageUrl"] as? String,
+            let imageUrl = userInfo["iconUrl"] as? String,
             let filename = URL(string: imageUrl)?.lastPathComponent else {
                 return
         }
+        print(imageUrl)
         if let savedImage = persistencyManager.getImage(with: filename) {
             imageView.image = savedImage
             return

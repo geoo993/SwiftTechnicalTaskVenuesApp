@@ -14,7 +14,6 @@ struct Venue: Codable {
     let name: String
     let categories: [Category]
     let country: String
-    let description: String
     let latitude: Double
     let longitude: Double
     init(data: [String: Any]) {
@@ -22,20 +21,20 @@ struct Venue: Codable {
         self.name = data["name"] as! String
         self.categories = data["categories"] as! [Category]
         self.country = data["country"] as! String
-        self.description = data["description"] as! String
         self.latitude = data["latitude"] as! Double
         self.longitude = data["longitude"] as! Double
     }
 }
 
 extension Venue: CustomStringConvertible {
-    var summary: String {
+    var description: String {
         return
             " id: \(id)\n" +
                 " name: \(name)\n" +
                 " country: \(country)\n" +
-                " description: \(description)\n" +
+                " category: \(categories.first?.name ?? "")\n" +
+                " iconUrl: \(categories.first?.iconUrl ?? "")\n" +
                 " latitude: \(latitude)\n" +
-                " longitude: \(longitude)\n"
+                " longitude: \(longitude)\n\n"
     }
 }
