@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 private enum Constants {
     static let cellIdentifier = "SearchResultCell"
@@ -16,15 +17,16 @@ class VenuesMapSearchViewController: UIViewController {
 
     @IBOutlet weak var tableView: VenuesSearchResultTableView!
     @IBOutlet weak var tableViewBackground: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     
     // Mark: - Main properties
-    private let mainColor = UIColor.eventogyTheme
-    var venues : [Venue]?
+    var categories : [Category]?
     
     // Mark: - Search bar
-    private let search = UISearchController(searchResultsController: nil)
+    let search = UISearchController(searchResultsController: nil)
     private var searchActive: Bool = false
-    private var searchBarFiltered: [Venue] = []
+    private var searchBarFiltered: [Category] = []
+    var searchVenuesOf: (_ category: String) -> () = { cat in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +37,14 @@ class VenuesMapSearchViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.updateViewConstraints()
-        updateTableView()
+        
     }
 
     // Mark: Setup navigation controller
     private func setupNavBar() {
         if let navigationController = self.navigationController {
             navigationController.navigationItem.largeTitleDisplayMode = .never
-            navigationController.navigationBar.barTintColor = mainColor
+            navigationController.navigationBar.barTintColor = UIColor.eventogyTheme
         }
     }
     
@@ -50,51 +52,48 @@ class VenuesMapSearchViewController: UIViewController {
     private func setupSearchBar() {
         search.searchBar.delegate = self
         search.searchBar.placeholder = "Search for..."
-        search.searchBar.backgroundColor = mainColor
-        search.searchBar.barTintColor = mainColor
+        search.searchBar.backgroundColor = UIColor.eventogyTheme
+        search.searchBar.barTintColor = UIColor.eventogyTheme
         search.searchBar.barStyle = .black
         search.searchBar.tintColor = .white
         search.obscuresBackgroundDuringPresentation = false
         self.definesPresentationContext = true
         self.navigationItem.searchController = search
         self.navigationItem.hidesSearchBarWhenScrolling = true
+        
     }
     func setupTableView() {
         self.tableView.roundCorners([.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 8.0)
         self.tableViewBackground.roundCorners([.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 8.0)
     }
-    func updateTableView() {
-
+    func updateTableView(hidden: Bool) {
+        self.tableView.isHidden = hidden
+        self.tableViewBackground.isHidden = hidden
     }
     
-    // Mark: Search venues based on interest
-    func searchVenues(of interest: String) {
-        print("Interested in ", interest)
-    }
-    
-    func updateVenues(with venues: [Venue]) {
-        self.venues = venues
+    // Mark: Select, Search Update venues
+    func updateCategories(with categories: [Category]) {
+        self.categories = categories
         self.tableView.reloadData()
     }
     
     func filterVenues(for searchText: String) {
-        if let filter =
-            venues?.filter( { ($0.categories.first?.name ?? "").lowercased().contains( searchText.lowercased() )}) {
+        if let filter = categories?
+            .filter( { $0.name.lowercased().contains( searchText.lowercased() )})
+            .sorted(by: { $0.name < $1.name }) {
             searchBarFiltered = filter
         }
-        
         if(searchBarFiltered.count == 0){
             searchActive = false
-            tableView.isHidden = true
+            updateTableView(hidden: true)
         } else {
-            tableView.isHidden = false
+            updateTableView(hidden: false)
             searchActive = true
         }
-        
         self.tableView.reloadData()
     }
     
-    /// dismiss keyboard (run in main thread)
+    // Mark: dismiss keyboard (run in main thread)
     private func dismissKeyboard(with view: UIView) {
         DispatchQueue.main.async {
             view.resignFirstResponder()
@@ -110,13 +109,13 @@ extension VenuesMapSearchViewController : UISearchBarDelegate {
         
         guard let touch:UITouch = touches.first else
         {
-            return;
+            return
         }
         
         if touch.view != tableView
         {
             self.search.searchBar.endEditing(true)
-            self.tableView.isHidden = true
+            updateTableView(hidden: true)
         }
     }
  
@@ -124,6 +123,7 @@ extension VenuesMapSearchViewController : UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
         searchBar.setShowsCancelButton(true, animated: true)
+        updateTableView(hidden: false)
     }
     
     /// Stop editing search bar
@@ -131,25 +131,23 @@ extension VenuesMapSearchViewController : UISearchBarDelegate {
         searchActive = false
         searchBar.setShowsCancelButton(false, animated: true)
         dismissKeyboard(with: searchBar)
+        updateTableView(hidden: true)
     }
     
     /// Hide Cancel
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
         searchBar.endEditing(true)
-        dismissKeyboard(with: searchBar)
-        
-        guard let interest = searchBar.text else {
+        guard let category = searchBar.text else {
             return
         }
-        searchVenues(of: interest)
+        searchVenuesOf(category)
     }
     
     /// Cancel Search and clear textfield
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = String()
         searchBar.endEditing(true)
-        dismissKeyboard(with: searchBar)
         
         guard let canceled = searchBar.text else {
             return
@@ -159,16 +157,31 @@ extension VenuesMapSearchViewController : UISearchBarDelegate {
     
     /// Update when textfield changes
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        tableViewClearCellsOnEditing()
         filterVenues(for: searchText)
     }
 }
 
 // MARK: UITableView Delegate
 extension VenuesMapSearchViewController : UITableViewDelegate {
+    func tableViewClearCellsOnEditing() {
+        for indexPath in tableView.indexPathsForVisibleRows ?? [] {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        for indexPath in tableView.indexPathsForSelectedRows ?? [] {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? VenuesSearchResultCell else { return }
         cell.contentView.backgroundColor = cell.selectedColor
+        
+        if let category = searchBarFiltered.enumerated().first(where: { $0.offset == indexPath.row })?.element {
+            self.search.searchBar.text = category.name
+            self.search.searchBar.endEditing(true)
+            searchVenuesOf(category.name)
+        }
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
@@ -198,12 +211,11 @@ extension VenuesMapSearchViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let cell =
             tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as? VenuesSearchResultCell,
-            let placeOfInterest = searchBarFiltered.enumerated().first(where: { $0.offset == indexPath.row })?.element {
+            let venueOfInterest = searchBarFiltered.enumerated().first(where: { $0.offset == indexPath.row })?.element {
             if(searchActive){
-                cell.setVenue(with: placeOfInterest)
+                cell.setCategory(with: venueOfInterest)
                 return cell
             }
             return UITableViewCell()

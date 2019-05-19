@@ -25,18 +25,17 @@ class VenuesSearchResultCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-  
-    func setVenue(with venue: Venue) {
-        venueLabel.text = venue.name.capitalizingFirstLetter()
-        if let category = venue.categories.first {
-            venueCategoryLabel.text = category.name.capitalizingFirstLetter()
-            venueImageContainer.layer.cornerRadius = venueImageContainer.frame.height / 2
-            venueImageView.layer.cornerRadius = venueImageView.frame.height / 2
-            venueImageView.image = UIImage(named: "place-marker")
-            
-//            NotificationCenter.default
-//                .post(name: .downloadImageNotification, object: self,
-//                      userInfo: ["imageView": venueImageView as Any, "iconUrl" : category.iconUrl])
-        }
+    
+    func setCategory(with category: Category) {
+        venueLabel.text = category.name
+        venueCategoryLabel.text = ""
+        venueImageContainer.layer.cornerRadius = venueImageContainer.frame.height / 2
+        venueImageView.layer.cornerRadius = venueImageView.frame.height / 2
+        venueImageView.image = UIImage(named: "place-marker")
+        
+//        NotificationCenter.default
+//            .post(name: .downloadImageNotification, object: self,
+//                  userInfo: ["imageView": venueImageView as Any, "iconUrl" : category.iconUrl])
+        
     }
 }
