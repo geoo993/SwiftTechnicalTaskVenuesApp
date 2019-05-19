@@ -26,6 +26,10 @@ class VenuesSearchResultCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
     func setCategory(with category: Category) {
         venueLabel.text = category.name
         venueCategoryLabel.text = ""
