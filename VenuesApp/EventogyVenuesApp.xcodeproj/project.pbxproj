@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C7EE1ACA228FDCCE007FA8BA /* VenueOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1AC9228FDCCE007FA8BA /* VenueOverlay.swift */; };
+		C76E2C752291CA9300451F85 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76E2C742291CA9300451F85 /* Category.swift */; };
+		C76E2C8F2291EDC900451F85 /* AnnotationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76E2C8E2291EDC900451F85 /* AnnotationType.swift */; };
+		C76E2C912291EE0D00451F85 /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76E2C902291EE0D00451F85 /* SearchType.swift */; };
 		C7EE1ACC228FDCE0007FA8BA /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1ACB228FDCE0007FA8BA /* Venue.swift */; };
 		C7EE1ACE228FE1C0007FA8BA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1ACD228FE1C0007FA8BA /* LocationManager.swift */; };
 		C7EE1AD0228FE78D007FA8BA /* VenueAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE1ACF228FE78D007FA8BA /* VenueAnnotation.swift */; };
@@ -24,7 +26,6 @@
 		C7EE347D228EEA2A00C7A209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE347B228EEA2A00C7A209 /* LaunchScreen.storyboard */; };
 		C7EE3488228EEA2A00C7A209 /* EventogyVenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */; };
 		C7EE3493228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */; };
-		C7EE34A7228F2D9800C7A209 /* VenuesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */; };
 		C7EE34C3228F39CE00C7A209 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE34C2228F39CE00C7A209 /* UIColor+Ext.swift */; };
 		C7F3761C229166690044AB7B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3761B229166690044AB7B /* UIView+Ext.swift */; };
 		C7F3761E22916B5D0044AB7B /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F3761D22916B5D0044AB7B /* String+Ext.swift */; };
@@ -48,7 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C7EE1AC9228FDCCE007FA8BA /* VenueOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueOverlay.swift; sourceTree = "<group>"; };
+		C76E2C742291CA9300451F85 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		C76E2C8E2291EDC900451F85 /* AnnotationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationType.swift; sourceTree = "<group>"; };
+		C76E2C902291EE0D00451F85 /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		C7EE1ACB228FDCE0007FA8BA /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		C7EE1ACD228FE1C0007FA8BA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C7EE1ACF228FE78D007FA8BA /* VenueAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAnnotation.swift; sourceTree = "<group>"; };
@@ -71,7 +74,6 @@
 		C7EE348E228EEA2B00C7A209 /* EventogyVenuesAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventogyVenuesAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventogyVenuesAppUITests.swift; sourceTree = "<group>"; };
 		C7EE3494228EEA2B00C7A209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuesResultViewController.swift; sourceTree = "<group>"; };
 		C7EE34C2228F39CE00C7A209 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		C7F3761B229166690044AB7B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		C7F3761D22916B5D0044AB7B /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -156,7 +158,6 @@
 		C7EE34A0228F1A2E00C7A209 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C7EE1AC9228FDCCE007FA8BA /* VenueOverlay.swift */,
 				C7EE1ACF228FE78D007FA8BA /* VenueAnnotation.swift */,
 			);
 			path = ViewModel;
@@ -167,7 +168,6 @@
 			children = (
 				C7EE1AD1228FE980007FA8BA /* VenuesMapSearchViewController.swift */,
 				C7EE3474228EEA2900C7A209 /* VenuesMapViewController.swift */,
-				C7EE34A6228F2D9800C7A209 /* VenuesResultViewController.swift */,
 				C7EE1AF32290BA89007FA8BA /* VenuesSearchResultCell.swift */,
 				C7EE1AF722914BE4007FA8BA /* VenuesSearchResultTableView.swift */,
 			);
@@ -177,7 +177,10 @@
 		C7EE34A2228F1A4200C7A209 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C76E2C8E2291EDC900451F85 /* AnnotationType.swift */,
+				C76E2C902291EE0D00451F85 /* SearchType.swift */,
 				C7EE1ACB228FDCE0007FA8BA /* Venue.swift */,
+				C76E2C742291CA9300451F85 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -351,15 +354,16 @@
 				C7F3761C229166690044AB7B /* UIView+Ext.swift in Sources */,
 				C7EE1ADA22905B42007FA8BA /* Double+Ext.swift in Sources */,
 				C7EE3475228EEA2900C7A209 /* VenuesMapViewController.swift in Sources */,
-				C7EE34A7228F2D9800C7A209 /* VenuesResultViewController.swift in Sources */,
 				C7EE34C3228F39CE00C7A209 /* UIColor+Ext.swift in Sources */,
 				C7EE1ACC228FDCE0007FA8BA /* Venue.swift in Sources */,
 				C7EE1AD2228FE980007FA8BA /* VenuesMapSearchViewController.swift in Sources */,
 				C7EE1AF42290BA89007FA8BA /* VenuesSearchResultCell.swift in Sources */,
 				C7EE1ACE228FE1C0007FA8BA /* LocationManager.swift in Sources */,
+				C76E2C752291CA9300451F85 /* Category.swift in Sources */,
 				C7EE1AF822914BE4007FA8BA /* VenuesSearchResultTableView.swift in Sources */,
+				C76E2C8F2291EDC900451F85 /* AnnotationType.swift in Sources */,
 				C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */,
-				C7EE1ACA228FDCCE007FA8BA /* VenueOverlay.swift in Sources */,
+				C76E2C912291EE0D00451F85 /* SearchType.swift in Sources */,
 				C7F3761E22916B5D0044AB7B /* String+Ext.swift in Sources */,
 				C7EE1AD5228FF9F0007FA8BA /* PersistencyManager.swift in Sources */,
 			);
