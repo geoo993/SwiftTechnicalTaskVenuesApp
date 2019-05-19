@@ -15,12 +15,14 @@ private enum Constants {
 
 class VenuesMapSearchViewController: UIViewController {
 
+    @IBOutlet weak var venueImageView: UIImageView!
     @IBOutlet weak var tableView: VenuesSearchResultTableView!
     @IBOutlet weak var tableViewBackground: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
     // Mark: - Main properties
     var categories : [Category]?
+    var venuesOfInterest = [Venue]()
     
     // Mark: - Search bar
     let search = UISearchController(searchResultsController: nil)
@@ -77,6 +79,7 @@ class VenuesMapSearchViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    // Mark: Filter the category array based on search text
     func filterVenues(for searchText: String) {
         if let filter = categories?
             .filter( { $0.name.lowercased().contains( searchText.lowercased() )})

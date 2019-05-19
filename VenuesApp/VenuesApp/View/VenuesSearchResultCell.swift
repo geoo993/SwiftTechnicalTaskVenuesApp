@@ -37,9 +37,6 @@ class VenuesSearchResultCell: UITableViewCell {
         venueImageView.layer.cornerRadius = venueImageView.frame.height / 2
         venueImageView.image = UIImage(named: "place-marker")
         
-//        NotificationCenter.default
-//            .post(name: .downloadImageNotification, object: self,
-//                  userInfo: ["imageView": venueImageView as Any, "iconUrl" : category.iconUrl])
         
     }
 }

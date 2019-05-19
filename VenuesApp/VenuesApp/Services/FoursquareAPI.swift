@@ -34,15 +34,14 @@ final class FoursquareAPI {
     }
     
     private var categoryPlaceholder: [String: Any] {
-        return ["id":"", "name":"", "shortName": "", "country":""] as [String : Any]
+        return ["id":"", "name":"", "shortName": ""] as [String : Any]
     }
     // MARK: - mock Venues data
     func mockVenueData() -> [Venue] {
         return [
             Venue(data: [
                 "id":"4de50c65fa7651589f3c2cf3",
-                "name":"", "category":"Hotel", "country":"United Kingdom",
-                "iconUrl":"hotel.png", "description":"Nobody here",
+                "name":"", "address":"London road", "country":"United Kingdom", "distance": 189.0,
                 "latitude":0.0, "longitude":0.0])
         ]
     }
@@ -180,9 +179,6 @@ final class FoursquareAPI {
                     categoryData["id"] = dict["id"] as! String
                     categoryData["name"] = dict["name"] as! String
                     categoryData["shortName"] = dict["shortName"] as! String
-                    let prefix = icon["prefix"] as! String
-                    let suffix = icon["suffix"] as! String
-                    categoryData["iconUrl"] = prefix + suffix
                     
                     categories.append(Category(data:categoryData))
                 }
@@ -190,10 +186,63 @@ final class FoursquareAPI {
         }
     }
     
+    func fetchVenuePhotos(using venueId: String, completion: @escaping ([String]) -> () ) {
+        let urlString =
+            "https://api.foursquare.com/v2/venues/\(venueId.lowercased())/photos" +
+            "?client_id=\(CLIENT_ID)&client_secret=\(CLIENT_SECRET)&v=\(VERSION)" +
+            "&limit=\(10)"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] (dataresult, response, error) in
+            guard let this = self else {
+                completion([])
+                return
+            }
+            if error != nil {
+                fatalError("Error getting venue photos from Foursquare: \(String(describing: error)).")
+            }
+            do {
+                guard
+                    // 1
+                    let data = dataresult else {
+                        fatalError("Data result of photos corrupted = nil.")
+                }
+                // 2
+                let json = try JSONSerialization.jsonObject(with: data)
+                guard
+                    // 3
+                    let dictionary = json as? [String: Any],
+                    // 4
+                    let photosResponse = dictionary["response"] as? [String: Any]
+                    else {
+                        fatalError("JSON decoding error of venue photos.")
+                }
+                //print(photosResponse)
+                
+                // Returns photos for a specific venue. To assemble a photo URL, combine the response’s prefix + size + suffix. Ex: https://igx.4sqi.net/img/general/300x500/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg
+                var photosData = [String]()
+                if let photos = photosResponse["photos"] as? [String: AnyObject] {
+                    
+                    for items in photos["items"] as! [[String: AnyObject]] {
+                        let prefix = items["prefix"] as! String
+                        let suffix = items["suffix"] as! String
+                        photosData.append(prefix + "200x200" + suffix)
+                    }
+                }
+                this.persistencyManager.saveVenuesData(with: data)
+
+                DispatchQueue.main.async(execute: { () -> Void in
+                    completion(photosData)
+                })
+            } catch let err {
+                fatalError("Could not fetch venue photos Data with URL: \(err)")
+            }
+        }.resume()
+    }
+    
     // MARK: - Cache and load venues images
     @objc func downloadTransactionData(with notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let imageView = userInfo["imageView"] as? UIImageView,
+            let imageView = userInfo["venueImageView"] as? UIImageView,
             let imageUrl = userInfo["iconUrl"] as? String,
             let filename = URL(string: imageUrl)?.lastPathComponent else {
                 return

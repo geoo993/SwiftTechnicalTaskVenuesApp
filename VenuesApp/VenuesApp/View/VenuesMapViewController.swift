@@ -11,15 +11,12 @@ import MapKit
 
 class VenuesMapViewController: VenuesMapSearchViewController {
     
-    // Mark: - Main properties
-    private var venuesOfInterest = [Venue]()
-    
-    // the maximum span radius for Foursquare is 100,000 meters.
+    // Mark: the maximum span radius for Foursquare is 100,000 meters.
     private let spanDistance = Measurement<UnitLength>(value: 1.2, unit: .miles)
     
     // Mark: Locatiion properties
     private let locationManager = LocationManager.shared
-    private var currentLocation: CLLocation?
+    private var currentLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +41,30 @@ class VenuesMapViewController: VenuesMapSearchViewController {
         
         // Allow the map to display the user's location
         mapView.setUserTrackingMode(.followWithHeading, animated: true)
+        venueImageView.isHidden = true
+        
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        mapView.addGestureRecognizer(longTapGesture)
         
         searchVenuesOf = { [weak self] category in
             guard let this = self, let userLocation = this.currentLocation else { return }
-            let location = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude,
-                                                       longitude: userLocation.coordinate.longitude)
+            let location = CLLocationCoordinate2D(latitude: userLocation.latitude,
+                                                       longitude: userLocation.longitude)
             this.centerOnRegion(with: location, searchType: .venues(category: category))
         }
     }
+    
+    // MARK: Setup Mapview
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let touchPoint = gestureRecognizer.location(in: mapView)
+            let newCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+            //addAnnotationOnLocation(pointedCoordinate: newCoordinate)
+            centerOnRegion(with: newCoordinate, searchType: .none)
+            currentLocation = newCoordinate
+        }
+    }
+    
     
     // MARK: Setup Location Manager
     func setupLocationManager() {
@@ -127,6 +140,21 @@ class VenuesMapViewController: VenuesMapSearchViewController {
         }
     }
     
+    // MARK: Fetch photos of selected venue using venueId
+    func searchVenuePhotos(of venue: VenueAnnotation) {
+        FoursquareAPI.shared.fetchVenuePhotos(using: venue.foursquareId, completion: { [weak self] photosData in
+            guard let this = self, let photoUrl = photosData.first else { return }
+            venue.imageUrl = photoUrl
+            this.setVenueImage(with: photoUrl)
+        })
+    }
+    
+    func setVenueImage(with imageUrl: String) {
+        NotificationCenter.default
+            .post(name: .downloadImageNotification, object: self,
+                  userInfo: ["venueImageView": venueImageView as Any, "iconUrl" : imageUrl])
+    }
+    
     func removeAnotations() {
         self.mapView.annotations.forEach {
             if !($0 is MKUserLocation) {
@@ -148,6 +176,23 @@ extension VenuesMapViewController: MKMapViewDelegate {
         guard let annotation = annotation as? VenueAnnotation else { return nil }
         let annotationType = AnnotationType.pin
         return annotationType.getPinAnnotationView(in: mapView, with: annotation)
+    }
+    
+    // MARK: - Show image of selected venue
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let venueAnnotaion = view.annotation as? VenueAnnotation {
+            venueImageView.isHidden = false
+            if let imageUrl = venueAnnotaion.imageUrl {
+                setVenueImage(with: imageUrl)
+            } else {
+                searchVenuePhotos(of: venueAnnotaion)
+            }
+        }
+    }
+    
+    // MARK: - Hide image of selected venue
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        venueImageView.isHidden = true
     }
  
     // // MARK: - Open selected venue on foursquare website
@@ -177,7 +222,7 @@ extension VenuesMapViewController: CLLocationManagerDelegate {
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        defer { currentLocation = locations.last }
+        defer { currentLocation = locations.last?.coordinate }
         if currentLocation == nil {
             // Zoom to center user on region
             if let userLocation = locations.last {
