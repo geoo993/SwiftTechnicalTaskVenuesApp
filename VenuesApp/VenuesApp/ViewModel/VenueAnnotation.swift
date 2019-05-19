@@ -9,14 +9,29 @@
 import MapKit
 
 class VenueAnnotation: NSObject, MKAnnotation {
+    let title: String?
     let name: String
-    let detail: String
+    let foursquareId: String
+    let address: String
     let coordinate: CLLocationCoordinate2D
     
     init(venue: Venue) {
+        self.title = venue.name
+        self.foursquareId = venue.id
         self.name = venue.name
-        self.detail = venue.description
+        self.address = venue.address
         self.coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
         super.init()
+    }
+    
+    var subtitle: String? {
+        return address
+    }
+    
+    func mapItem() -> MKMapItem {
+        let placemark = MKPlacemark(coordinate: coordinate)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = name
+        return mapItem
     }
 }
