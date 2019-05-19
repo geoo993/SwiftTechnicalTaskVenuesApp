@@ -10,12 +10,10 @@ struct Category: Codable, Hashable {
     var id: String
     var name: String
     var shortName: String
-    var iconUrl: String
     init(data: [String: Any]) {
         self.id = data["id"] as! String
         self.name = (data["name"] as! String).capitalizingFirstLetter()
         self.shortName = (data["shortName"] as! String).capitalizingFirstLetter()
-        self.iconUrl = data["iconUrl"] as! String
     }
 }
 func ==(cat1: Category, cat2: Category) -> Bool {
@@ -27,7 +25,6 @@ extension Category: CustomStringConvertible {
         return
             " id: \(id)\n" +
             " name: \(name)\n" +
-            " shortName: \(shortName)\n" +
-            " iconUrl: \(iconUrl)\n"
+            " shortName: \(shortName)\n"
     }
 }
