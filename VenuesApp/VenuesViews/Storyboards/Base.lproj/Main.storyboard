@@ -20,7 +20,7 @@
                         <color key="barTintColor" red="0.2104627788066864" green="0.32550042867660522" blue="0.50811976194381714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="JN4-8S-lso" kind="relationship" relationship="rootViewController" id="pnR-FW-9VX"/>
+                        <segue destination="JN4-8S-lso" kind="relationship" relationship="rootViewController" id="7Ce-Fw-z91"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vne-ib-Z5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -210,37 +210,85 @@
             </objects>
             <point key="canvasLocation" x="1194" y="133"/>
         </scene>
-        <!--Venue Search Loaction Controller-->
+        <!--Venue Search Location Controller-->
         <scene sceneID="fYq-V2-ZuB">
             <objects>
-                <viewController storyboardIdentifier="VenueSearchLoactionController" id="JN4-8S-lso" customClass="VenueSearchLoactionController" customModule="VenuesViews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VenueSearchLocationController" id="JN4-8S-lso" customClass="VenueSearchLocationController" customModule="VenuesViews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQg-HA-mzH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place here...." textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-69-6CO">
-                                <rect key="frame" x="41.5" y="100" width="331" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.2104627788" green="0.32550042870000001" blue="0.50811976189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" red="0.2104627788" green="0.32550042870000001" blue="0.50811976189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yda-hO-pdm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Hk-SW-9m9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRZ-xz-J4A">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="amE-b4-ElB">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <blurEffect style="dark"/>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter place here...." textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="hdU-69-6CO" customClass="SearchTextfield" customModule="VenuesViews" customModuleProvider="target">
+                                <rect key="frame" x="41.5" y="100" width="331" height="50"/>
+                                <color key="backgroundColor" red="0.2104627788" green="0.32550042870000001" blue="0.50811976189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Gad-jg-4yR"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="location"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="JN4-8S-lso" id="ntQ-vD-PSE"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unrecognised place, please try again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmR-WL-lhF">
-                                <rect key="frame" x="41.5" y="135" width="331" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unrecognised place, please try again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmR-WL-lhF">
+                                <rect key="frame" x="41.5" y="155" width="331" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-7Y-WwR">
-                                <rect key="frame" x="41.5" y="197" width="331" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Search">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLi-7Y-WwR" customClass="SearchButton" customModule="VenuesViews" customModuleProvider="target">
+                                <rect key="frame" x="41.5" y="217" width="331" height="50"/>
+                                <color key="backgroundColor" red="0.2104627788" green="0.32550042870000001" blue="0.50811976189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lda-WC-J4V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="SEARCH">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.5" height="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="search:" destination="JN4-8S-lso" eventType="touchUpInside" id="WPa-DL-QL0"/>
                                 </connections>
@@ -248,13 +296,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2104627788" green="0.32550042870000001" blue="0.50811976189999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="yda-hO-pdm" firstAttribute="trailing" secondItem="Itn-Ds-fV2" secondAttribute="trailing" id="3Pm-0p-Zq0"/>
                             <constraint firstItem="hLi-7Y-WwR" firstAttribute="centerX" secondItem="rQg-HA-mzH" secondAttribute="centerX" id="54p-Jw-yWM"/>
                             <constraint firstItem="hdU-69-6CO" firstAttribute="width" secondItem="rQg-HA-mzH" secondAttribute="width" multiplier="0.8" id="7Y4-J7-2pd"/>
                             <constraint firstItem="hLi-7Y-WwR" firstAttribute="top" secondItem="GmR-WL-lhF" secondAttribute="bottom" constant="50" id="94H-EL-db7"/>
+                            <constraint firstAttribute="bottom" secondItem="yda-hO-pdm" secondAttribute="bottom" id="9zV-wh-qDf"/>
                             <constraint firstItem="hLi-7Y-WwR" firstAttribute="width" secondItem="hdU-69-6CO" secondAttribute="width" id="GzK-zy-uH0"/>
                             <constraint firstItem="GmR-WL-lhF" firstAttribute="centerX" secondItem="hdU-69-6CO" secondAttribute="centerX" id="Usx-Ce-R6H"/>
                             <constraint firstItem="hdU-69-6CO" firstAttribute="top" secondItem="Itn-Ds-fV2" secondAttribute="top" constant="100" id="X0k-jN-zlH"/>
                             <constraint firstItem="hdU-69-6CO" firstAttribute="centerX" secondItem="rQg-HA-mzH" secondAttribute="centerX" id="lV3-fd-sFk"/>
+                            <constraint firstItem="yda-hO-pdm" firstAttribute="top" secondItem="rQg-HA-mzH" secondAttribute="top" id="t09-Xa-XG5"/>
+                            <constraint firstItem="yda-hO-pdm" firstAttribute="leading" secondItem="Itn-Ds-fV2" secondAttribute="leading" id="yHb-wa-dKZ"/>
                             <constraint firstItem="GmR-WL-lhF" firstAttribute="width" secondItem="hdU-69-6CO" secondAttribute="width" id="zPl-pJ-GIv"/>
                             <constraint firstItem="GmR-WL-lhF" firstAttribute="top" secondItem="hdU-69-6CO" secondAttribute="bottom" constant="5" id="zpt-WI-LwW"/>
                         </constraints>
