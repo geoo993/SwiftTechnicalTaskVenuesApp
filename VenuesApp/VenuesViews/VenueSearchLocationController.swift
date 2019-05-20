@@ -1,5 +1,5 @@
 //
-//  VenueSearchLoactionController.swift
+//  VenueSearchLocationController.swift
 //  VenuesViews
 //
 //  Created by GEORGE QUENTIN on 20/05/2019.
@@ -11,12 +11,12 @@ import CoreLocation
 import VenuesModel
 import VenuesServices
 
-class VenueSearchLoactionController: UIViewController {
+class VenueSearchLocationController: UIViewController {
     // Mark: - Main properties
     private var places: [Place]?
-    @IBOutlet weak var textfield: UITextField!
+    @IBOutlet weak var textfield: SearchTextfield!
     @IBOutlet weak var searchMessageLabel: UILabel!
-    @IBAction func search(_ sender: UIButton) {
+    @IBAction func search(_ sender: SearchButton) {
         if let searchText = textfield.text {
             GooglePlaceAPI.shared.fetchLocations(of: searchText) { [weak self] (places) in
                 if !places.isEmpty {
@@ -24,6 +24,7 @@ class VenueSearchLoactionController: UIViewController {
                     self?.performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
                 } else {
                     self?.searchMessageLabel.isHidden = false
+                    self?.textfield.shake()
                 }
             }
         }
@@ -56,7 +57,7 @@ class VenueSearchLoactionController: UIViewController {
     }
 }
 
-extension VenueSearchLoactionController: UITextFieldDelegate {
+extension VenueSearchLocationController: UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch:UITouch = touches.first else
