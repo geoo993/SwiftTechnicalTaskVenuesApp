@@ -10,12 +10,11 @@ import VenuesModel
 import CoreLocation
 import UIKit
 
-public final class GooglePlaceAPI {
-    public static let shared = GooglePlaceAPI()
+public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
+    //public static let shared = GooglePlaceAPI()
     
-    private let GOOGLE_API_KEY = "AIzaSyALcJxBXNfCiUfrVS3lwx9fVLvbsJ3OFhg"
-
     private init() {
+        super.init()
         // Get data of transactions
         NotificationCenter.default
             .addObserver(PersistencyManager.shared,
@@ -25,29 +24,34 @@ public final class GooglePlaceAPI {
     private var placePlaceholder: [String: Any] {
         return ["name":"", "address":"", "latitude":0.0, "longitude":0.0] as [String : Any]
     }
+ 
     // MARK: - Fetch locations in UK
-    public func fetchLocations(of place: String, completion: @escaping ([VenuesModel.Place]) -> () ) {
+    public func fetchLocations(of place: String, completion: @escaping (NetworkResult<VenuesModel.Place>) -> () ) {
         // input — The text input specifying which place to search for (for example, a name, address, or phone number).
         let urlString =
-        "https://maps.googleapis.com/maps/api/place/findplacefromtext/" +
-        "json?input=\(place)&inputtype=textquery" +
-        "&fields=formatted_address,name,geometry" +
-        "&key=\(GOOGLE_API_KEY)"
+            "https://maps.googleapis.com/maps/api/place/findplacefromtext/" +
+                "json?input=\(place)&inputtype=textquery" +
+                "&fields=formatted_address,name,geometry" +
+        "&key=\(Constants.GOOGLE_API_KEY.rawValue)"
         let encodingUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: encodingUrl) else { return }
-        URLSession.shared.dataTask(with: url) { [weak self] (dataresult, response, error) in
-            guard let this = self else {
-                completion([])
-                return
-            }
+        fetchData(url: url) { [weak self] (data, error)  in
+            guard let this = self else { return }
+            this.handleLocationsResult(data: data, error: error, completion: completion)
+        }
+    }
+    
+    private func handleLocationsResult(data: Data?, error: Error?,
+                                       completion: @escaping (NetworkResult<VenuesModel.Place>) -> ()) {
             if error != nil {
-                fatalError("Error getting locations from National Statistics: \(String(describing: error)).")
+                completion(NetworkResult.error("Error getting locations from National Statistics: \(String(describing: error))."))
             }
             do {
                 guard
                     // 1
-                    let data = dataresult else {
-                        fatalError("Data result of locations corrupted = nil.")
+                    let data = data else {
+                        completion(NetworkResult.error("Data result of locations corrupted = nil."))
+                        return
                 }
                 // 2
                 let json = try JSONSerialization.jsonObject(with: data)
@@ -57,29 +61,32 @@ public final class GooglePlaceAPI {
                     // 4
                     let locationsResponse = dictionary["candidates"] as? [Any]
                     else {
-                        fatalError("JSON decoding error of of locations.")
-                }
-                print(dictionary)
+                        completion(NetworkResult.error("JSON decoding error of of locations.")); return }
+                //print(dictionary)
                 
                 var places = [VenuesModel.Place]()
-                for placeResponse in locationsResponse as! [[String: AnyObject]] {
-                    var locationData = this.placePlaceholder
-                    locationData["name"] = placeResponse["name"] as! String
-                    locationData["address"] = placeResponse["formatted_address"] as! String
-                    if let geometry = placeResponse["geometry"] as? [String: AnyObject] {
-                        if let location = geometry["location"] as? [String: AnyObject] {
-                            locationData["latitude"] = location["lat"] as! Double
-                            locationData["longitude"] = location["lng"] as! Double
-                        }
-                    }
+                guard let locationResponses = locationsResponse as? [[String: AnyObject]] else { return }
+                for placeResponse in locationResponses {
+                    guard let name = placeResponse["name"] as? String,
+                        let address = placeResponse["formatted_address"] as? String,
+                        let geometry = placeResponse["geometry"] as? [String: AnyObject],
+                        let location = geometry["location"] as? [String: AnyObject],
+                        let latitude = location["lat"] as? Double,
+                        let longitude = location["lng"] as? Double
+                        else { completion(NetworkResult.error("JSON decoding error of of locations.")); return }
+                    var locationData = placePlaceholder
+                    locationData["name"] = name
+                    locationData["address"] = address
+                    locationData["latitude"] = latitude
+                    locationData["longitude"] = longitude
                     places.append(Place(data: locationData))
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
-                    completion(places)
+                    completion(NetworkResult.data(places))
                 })
             } catch let err {
-                fatalError("Could not fetch UK location Data with URL: \(err)")
+                completion(NetworkResult.error("Could not fetch UK location Data with URL: \(err)"))
             }
-        }.resume()
     }
+
 }
