@@ -13,13 +13,15 @@
 		C715006F2292EF1B00F50C7C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C715006E2292EF1B00F50C7C /* PlaceAnnotation.swift */; };
 		C71500712292EFDB00F50C7C /* GooglePlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71500702292EFDB00F50C7C /* GooglePlaceAPI.swift */; };
 		C71500732293079300F50C7C /* VenueSearchLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71500722293079300F50C7C /* VenueSearchLocationController.swift */; };
-		C75693ED2295F759005D48A7 /* EventogyVenuesFoursquareAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EB2295F759005D48A7 /* EventogyVenuesFoursquareAPITests.swift */; };
-		C75693EE2295F759005D48A7 /* EventogyVenuesGoogleAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EC2295F759005D48A7 /* EventogyVenuesGoogleAPITests.swift */; };
 		C75693F02295FA43005D48A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EF2295FA43005D48A7 /* Constants.swift */; };
 		C7B4045E22969782003D6AB2 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4045D22969782003D6AB2 /* URLSessionProtocol.swift */; };
 		C7B404602296A1F4003D6AB2 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4045F2296A1F4003D6AB2 /* HTTPClient.swift */; };
 		C7B404622296AEA5003D6AB2 /* FoursquareAPI+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404612296AEA5003D6AB2 /* FoursquareAPI+Ext.swift */; };
-		C7B404642296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404632296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift */; };
+		C7B404662296FE85003D6AB2 /* HTTPURLResponse+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404652296FE85003D6AB2 /* HTTPURLResponse+Ext.swift */; };
+		C7B4046B229700CD003D6AB2 /* EventogyVenuesURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404632296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift */; };
+		C7B4046C229700CD003D6AB2 /* EventogyVenuesGoogleAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EC2295F759005D48A7 /* EventogyVenuesGoogleAPITests.swift */; };
+		C7B4046D229700CD003D6AB2 /* EventogyVenuesFoursquareAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EB2295F759005D48A7 /* EventogyVenuesFoursquareAPITests.swift */; };
+		C7B4046E229700CD003D6AB2 /* EventogyVenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */; };
 		C7C0660E229357EA00794599 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0660D229357EA00794599 /* NetworkRequest.swift */; };
 		C7D36029229293620064ED0C /* VenuesModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D36027229293620064ED0C /* VenuesModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7D3602C229293620064ED0C /* VenuesModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D36025229293620064ED0C /* VenuesModel.framework */; };
@@ -64,7 +66,6 @@
 		C7D360CA2292A2970064ED0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7D360C92292A2740064ED0C /* Assets.xcassets */; };
 		C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3472228EEA2900C7A209 /* AppDelegate.swift */; };
 		C7EE347D228EEA2A00C7A209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE347B228EEA2A00C7A209 /* LaunchScreen.storyboard */; };
-		C7EE3488228EEA2A00C7A209 /* EventogyVenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */; };
 		C7EE3493228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		C7B4045F2296A1F4003D6AB2 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		C7B404612296AEA5003D6AB2 /* FoursquareAPI+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoursquareAPI+Ext.swift"; sourceTree = "<group>"; };
 		C7B404632296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventogyVenuesURLSessionTests.swift; sourceTree = "<group>"; };
+		C7B404652296FE85003D6AB2 /* HTTPURLResponse+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Ext.swift"; sourceTree = "<group>"; };
 		C7C0660D229357EA00794599 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		C7D36025229293620064ED0C /* VenuesModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VenuesModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D36027229293620064ED0C /* VenuesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VenuesModel.h; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				C7EE1AD922905B42007FA8BA /* Double+Ext.swift */,
 				C7F3761B229166690044AB7B /* UIView+Ext.swift */,
 				C7F3761D22916B5D0044AB7B /* String+Ext.swift */,
+				C7B404652296FE85003D6AB2 /* HTTPURLResponse+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 			files = (
 				C7D360882292951A0064ED0C /* Double+Ext.swift in Sources */,
 				C7D360872292951A0064ED0C /* UIColor+Ext.swift in Sources */,
+				C7B404662296FE85003D6AB2 /* HTTPURLResponse+Ext.swift in Sources */,
 				C7D3608A2292951A0064ED0C /* String+Ext.swift in Sources */,
 				C7D360892292951A0064ED0C /* UIView+Ext.swift in Sources */,
 			);
@@ -831,10 +835,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75693ED2295F759005D48A7 /* EventogyVenuesFoursquareAPITests.swift in Sources */,
-				C75693EE2295F759005D48A7 /* EventogyVenuesGoogleAPITests.swift in Sources */,
-				C7EE3488228EEA2A00C7A209 /* EventogyVenuesAppTests.swift in Sources */,
-				C7B404642296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift in Sources */,
+				C7B4046C229700CD003D6AB2 /* EventogyVenuesGoogleAPITests.swift in Sources */,
+				C7B4046B229700CD003D6AB2 /* EventogyVenuesURLSessionTests.swift in Sources */,
+				C7B4046E229700CD003D6AB2 /* EventogyVenuesAppTests.swift in Sources */,
+				C7B4046D229700CD003D6AB2 /* EventogyVenuesFoursquareAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1344,9 +1348,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventogyVenuesAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1355,6 +1358,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.VenuesAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EventogyVenuesApp.app/EventogyVenuesApp";
@@ -1365,9 +1369,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventogyVenuesAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1376,6 +1379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.VenuesAppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EventogyVenuesApp.app/EventogyVenuesApp";
@@ -1386,8 +1390,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventogyVenuesAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1396,9 +1400,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.VenuesAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = VenuesApp;
+				TEST_TARGET_NAME = EventogyVenuesApp;
 			};
 			name = Debug;
 		};
@@ -1406,8 +1412,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4Q93294747;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventogyVenuesAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1416,9 +1422,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.geo-games.VenuesAppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = VenuesApp;
+				TEST_TARGET_NAME = EventogyVenuesApp;
 			};
 			name = Release;
 		};
