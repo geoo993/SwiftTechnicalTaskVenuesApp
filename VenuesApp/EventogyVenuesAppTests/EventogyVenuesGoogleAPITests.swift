@@ -41,103 +41,156 @@ class EventogyVenuesGoogleAPIAppTests: XCTestCase {
         // Then
         XCTAssertNotEqual(encodingUrl, urlString)
     }
-    func testFetchDataURLSessionRequestReturnsData() {
+    
+    func testGooglePlaceAPIReturnsData() {
         
         // Given
         let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let dataExpectation = expectation(description: "Wait for \(urlString) to load.")
-        var data: Data?
+        var nextData: Data?
+        var nextError: Error?
         
         // When
         guard let url = URL(string: urlString) else {
-            fatalError("URL can't be empty")
+            fatalError("URL can't be empty or have spacing")
         }
-        httpClient.fetchData(url: url) { (success, response) in
-            data = success
+        httpClient.fetchData(url: url) { (success, error) in
+            nextData = success
+            nextError = error
             dataExpectation.fulfill()
         }
         
         // Then
         waitForExpectations(timeout: 5.0, handler: nil)
-        XCTAssertNotNil(data)
-        
+        XCTAssertNotNil(nextData)
+        XCTAssertNil(nextError)
     }
     
-    /*
-    func testFetchLocationsFromGooglePlaceAPI() {
+    func testGooglePlaceAPIDataCastToJson() {
+        // Given
+        let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let dataExpectation = expectation(description: "Wait for \(urlString) to load.")
+        var nextData: Data?
+        var nextError: Error?
+
+        // When
+        guard let url = URL(string: urlString) else {
+            fatalError("URL can't be empty or have spacing")
+        }
+        httpClient.fetchData(url: url) { (success, error) in
+            nextData = success
+            nextError = error
+            dataExpectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 5.0, handler: nil)
+        
+        // check data is not nil
+        XCTAssertNotNil(nextData)
+        XCTAssertNil(nextError)
+        
+        guard let data = nextData else { return }
+        
+        // Check json is not nil
+        let json = try? JSONSerialization.jsonObject(with: data)
+        XCTAssertNotNil(json)
+        
+        // Check the first value is not nil
+        let dictionary = json as? [String: Any]
+        XCTAssertNotNil(dictionary)
+    }
+    
+    func testGooglePlaceAPIJsonDataHasCandidates() {
+        // Given
+        let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let dataExpectation = expectation(description: "Wait for \(urlString) to load.")
+        var nextData: Data?
+        var nextError: Error?
+        
+        // When
+        guard let url = URL(string: urlString) else {
+            fatalError("URL can't be empty or have spacing")
+        }
+        httpClient.fetchData(url: url) { (success, error) in
+            nextData = success
+            nextError = error
+            dataExpectation.fulfill()
+        }
+        
+        // Then
+        waitForExpectations(timeout: 5.0, handler: nil)
+        
+        // check data is not nil
+        XCTAssertNotNil(nextData)
+        XCTAssertNil(nextError)
+        
+        guard let data = nextData,
+            let json = try? JSONSerialization.jsonObject(with: data),
+            let dictionary = json as? [String: Any]
+        else { return }
+        
+        // check candidates
+        let locationsCandidates = dictionary["candidates"] as? [Any]
+        XCTAssertNotNil(locationsCandidates)
+    }
+    
+    func testFetchLocationsOfPlaceFromGooglePlaceAPI() {
         // Given
         let place = "southbank centre"
-        let parameters = ["name":"", "address":"", "latitude": 0.0, "longitude":0.0] as [String : Any]
         let urlString =
             "https://maps.googleapis.com/maps/api/place/findplacefromtext/" +
                 "json?input=\(place)&inputtype=textquery" +
                 "&fields=formatted_address,name,geometry" +
         "&key=\(Constants.GOOGLE_API_KEY.rawValue)"
+        let dataExpectation = expectation(description: "Wait for \(urlString) to load.")
+        var nextData: Data?
         
         // When
         let encodingUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodingUrl)
+        guard let url = URL(string: encodingUrl) else {
+            fatalError("URL can't be empty or have spacing")
+        }
+        httpClient.fetchData(url: url) { (success, error) in
+            nextData = success
+            dataExpectation.fulfill()
+        }
         
         // Then
-        XCTAssertNotEqual(encodingUrl, urlString)
+        waitForExpectations(timeout: 5.0, handler: nil)
+       
+        guard let data = nextData,
+            let json = try? JSONSerialization.jsonObject(with: data),
+            let dictionary = json as? [String: Any],
+            let locationsCandidates = dictionary["candidates"] as? [Any]
+        else { return }
+
+        let locationResponses = locationsCandidates as? [[String: AnyObject]]
+        XCTAssertNotNil(locationResponses)
         
-        XCTAssertNotNil(url)
+        let placeResponse = locationResponses?.first
+        XCTAssertNotNil(placeResponse)
         
-        guard let safeUrl = url else { return }
+        guard let placeResult = placeResponse else {
+            fatalError("Decoding error")
+        }
+        let name = placeResult["name"] as? String
+        XCTAssertNotNil(name)
         
-        print(url, encodingUrl, urlString)
+        let address = placeResult["formatted_address"] as? String
+        XCTAssertNotNil(address)
         
-        URLSession.shared
-            .dataTask(with: safeUrl) { (dataresult, response, error) in
-            
-            // check that we have no errors
-            XCTAssertNil(error)
-            
-            // check data is not nil
-            XCTAssertNotNil(dataresult)
-            guard let data = dataresult else { return }
-            
-            // Check json is not nil
-            let json = try? JSONSerialization.jsonObject(with: data)
-            XCTAssertNotNil(json)
-            
-            // Check the first value is not nil
-            let dictionary = json as? [String: Any]
-            XCTAssertNotNil(dictionary)
-            
-            guard let safeDictionary = dictionary else { return }
-            
-            // check candidates
-            let locationsCandidates = safeDictionary["candidates"] as? [Any]
-            XCTAssertNotNil(locationsCandidates)
-            
-            guard let locationsResponse = locationsCandidates else { return }
-            print(locationsResponse)
-//
-//            var places = [VenuesModel.Place]()
-//            guard let locationResponses = locationsResponse as? [[String: AnyObject]] else { return }
-//            for placeResponse in locationResponses {
-//                guard let name = placeResponse["name"] as? String,
-//                    let address = placeResponse["formatted_address"] as? String,
-//                    let geometry = placeResponse["geometry"] as? [String: AnyObject],
-//                    let location = geometry["location"] as? [String: AnyObject],
-//                    let latitude = location["lat"] as? Double,
-//                    let longitude = location["lng"] as? Double
-//                    else { //completion(NetworkResult.error("JSON decoding error of of locations.")); return
-//                        return
-//                }
-//                var locationData = this.placePlaceholder
-//                locationData["name"] = name
-//                locationData["address"] = address
-//                locationData["latitude"] = latitude
-//                locationData["longitude"] = longitude
-//                places.append(Place(data: locationData))
-//            }
-        }.resume()
+        let geometry = placeResult["geometry"] as? [String: AnyObject]
+        XCTAssertNotNil(geometry)
         
+        let location = geometry?["location"] as? [String: AnyObject]
+        XCTAssertNotNil(location)
         
-        // Then
-        //XCTAssert(toFirstCapitalLetter == "My first word")
+        let latitude = location?["lat"] as? Double
+        XCTAssertNotNil(latitude)
+        
+        let longitude = location?["lng"] as? Double
+        XCTAssertNotNil(longitude)
     }
- */
+
 }

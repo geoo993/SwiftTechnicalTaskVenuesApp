@@ -18,7 +18,6 @@ class VenueSearchLocationController: UIViewController {
     @IBOutlet weak var searchMessageLabel: UILabel!
     @IBAction func search(_ sender: SearchButton) {
         if let searchText = textfield.text {
-            /* TODO: Implement After tests
             GooglePlaceAPI.shared.fetchLocations(of: searchText) { [weak self] (results) in
                 switch results {
                 case .data(let places):
@@ -33,7 +32,6 @@ class VenueSearchLocationController: UIViewController {
                     fatalError(error)
                 }
             }
- */
         }
     }
     // Mark: - Show navigation bar

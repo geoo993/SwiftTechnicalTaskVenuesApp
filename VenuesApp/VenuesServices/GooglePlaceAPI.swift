@@ -11,7 +11,7 @@ import CoreLocation
 import UIKit
 
 public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
-    //public static let shared = GooglePlaceAPI()
+    public static let shared = GooglePlaceAPI()
     
     private init() {
         super.init()
@@ -21,10 +21,7 @@ public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
                          selector: #selector(PersistencyManager.shared.downloadTransactionData(with:)),
                          name: .downloadImageNotification, object: nil)
     }
-    private var placePlaceholder: [String: Any] {
-        return ["name":"", "address":"", "latitude":0.0, "longitude":0.0] as [String : Any]
-    }
- 
+
     // MARK: - Fetch locations in UK
     public func fetchLocations(of place: String, completion: @escaping (NetworkResult<VenuesModel.Place>) -> () ) {
         // input — The text input specifying which place to search for (for example, a name, address, or phone number).
@@ -74,7 +71,7 @@ public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
                         let latitude = location["lat"] as? Double,
                         let longitude = location["lng"] as? Double
                         else { completion(NetworkResult.error("JSON decoding error of of locations.")); return }
-                    var locationData = placePlaceholder
+                    var locationData = ["name":"", "address":"", "latitude":0.0, "longitude":0.0] as [String : Any]
                     locationData["name"] = name
                     locationData["address"] = address
                     locationData["latitude"] = latitude
