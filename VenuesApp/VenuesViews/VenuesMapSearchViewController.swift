@@ -9,11 +9,6 @@ import VenuesModel
 import UIKit
 import MapKit
 
-enum Constants {
-    static let cellIdentifier = "SearchResultCell"
-    static let segueIdentifier = "toVenuesMap"
-}
-
 class VenuesMapSearchViewController: UIViewController {
 
     @IBOutlet weak var venueImageView: UIImageView!
@@ -217,7 +212,7 @@ extension VenuesMapSearchViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell =
-            tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as? VenuesSearchResultCell,
+            tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier.rawValue, for: indexPath) as? VenuesSearchResultCell,
             let venueOfInterest = searchBarFiltered.enumerated().first(where: { $0.offset == indexPath.row })?.element {
             if(searchActive){
                 cell.setCategory(with: venueOfInterest)

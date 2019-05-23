@@ -18,15 +18,22 @@ class VenueSearchLocationController: UIViewController {
     @IBOutlet weak var searchMessageLabel: UILabel!
     @IBAction func search(_ sender: SearchButton) {
         if let searchText = textfield.text {
-            GooglePlaceAPI.shared.fetchLocations(of: searchText) { [weak self] (places) in
-                if !places.isEmpty {
-                    self?.places = places
-                    self?.performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
-                } else {
-                    self?.searchMessageLabel.isHidden = false
-                    self?.textfield.shake()
+            /* TODO: Implement After tests
+            GooglePlaceAPI.shared.fetchLocations(of: searchText) { [weak self] (results) in
+                switch results {
+                case .data(let places):
+                    if !places.isEmpty {
+                        self?.places = places
+                        self?.performSegue(withIdentifier: Constants.segueIdentifier.rawValue, sender: self)
+                    } else {
+                        self?.searchMessageLabel.isHidden = false
+                        self?.textfield.shake()
+                    }
+                case .error(let error):
+                    fatalError(error)
                 }
             }
+ */
         }
     }
     // Mark: - Show navigation bar

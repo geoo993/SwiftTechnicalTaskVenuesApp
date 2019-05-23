@@ -109,34 +109,54 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     
     // MARK: Fetch venues data at location
     func searchVenueCategories(at location: CLLocationCoordinate2D) {
-        FoursquareAPI.shared.fetchVenueCategories(completion:{ [weak self] categoriesData in
+        /* TODO: Implement After tests
+        FoursquareAPI.shared.fetchVenueCategories(completion:{ [weak self] results in
             guard let this = self else { return }
-            this.updateCategories(with: categoriesData)
+            switch results {
+            case .data(let categories):
+                this.updateCategories(with: categories)
+            case .error(let error ):
+                fatalError(error)
+            }
         })
+        */
     }
     
     // MARK: Fetch venues of particular interest at location
     func searchVenues(of interest: String, at location: CLLocationCoordinate2D) {
         let metersRadius = spanDistance.converted(to: .meters).value
-        FoursquareAPI.shared.fetchVenues(using: interest, with: metersRadius, at: location) { [weak self] venuesData in
-            guard let this = self else { return }
-            
-            this.removeAnotations()
-            for venue in venuesData {
-                //print(venue.description)
-                this.mapView.addAnnotation(VenueAnnotation(venue: venue))
+        /* TODO: Implement After tests
+        FoursquareAPI.shared.fetchVenues(using: interest, with: metersRadius, at: location) { [weak self] results in
+            switch results {
+            case .data(let venuesData):
+                guard let this = self else { return }
+                this.removeAnotations()
+                for venue in venuesData {
+                    //print(venue.description)
+                    this.mapView.addAnnotation(VenueAnnotation(venue: venue))
+                }
+                this.venuesOfInterest = venuesData
+            case .error(let error):
+                fatalError(error)
             }
-            this.venuesOfInterest = venuesData
         }
+        */
     }
     
     // MARK: Fetch photos of selected venue using venueId
     func searchVenuePhotos(of venue: VenueAnnotation) {
-        FoursquareAPI.shared.fetchVenuePhotos(using: venue.id, completion: { [weak self] photosData in
-            guard let this = self, let photoUrl = photosData.first else { return }
-            venue.imageUrl = photoUrl
-            this.setVenueImage(with: photoUrl)
+        /* TODO: Implement After tests
+        FoursquareAPI.shared.fetchVenuePhotos(using: venue.id, completion: { [weak self] results in
+            switch results {
+            case .data(let photosData):
+                guard let this = self, let photoUrl = photosData.first else { return }
+                venue.imageUrl = photoUrl
+                this.setVenueImage(with: photoUrl)
+            case .error(let error):
+                fatalError(error)
+            }
         })
+         */
     }
     
     func setVenueImage(with imageUrl: String) {
@@ -195,7 +215,9 @@ extension VenuesMapViewController: MKMapViewDelegate {
             let annotationSubTitle = view.annotation?.subtitle,
             let subTitle = annotationSubTitle,
             let venue = venuesOfInterest.first(where: { $0.name == title && $0.address == subTitle }) {
+            /* TODO: Implement After tests
             FoursquareAPI.shared.openWeb(of: venue.id)
+             */
         }
     }
     
