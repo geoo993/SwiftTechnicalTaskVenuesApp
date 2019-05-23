@@ -11,50 +11,26 @@ import VenuesServices
 import VenuesModel
 @testable import EventogyVenuesApp
 
-class MockURLSessionDataTask: URLSessionDataTaskProtocol {
-    private (set) var resumeWasCalled = false
-    func resume() {
-        resumeWasCalled = true
-    }
-}
-
-class MockURLSession: URLSessionProtocol {
-    var nextDataTask = MockURLSessionDataTask()
-    private (set) var lastURL: URL?
-    private var nextData: Data?
-    private var nextError: Error?
-    private func successHttpURLResponse(request: URLRequest) -> URLResponse {
-        return HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
-    }
-    
-    func dataTask(with request: URLRequest,
-                  completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTaskProtocol {
-        lastURL = request.url
-        completion(nextData, successHttpURLResponse(request: request), nextError)
-        return nextDataTask
-    }
-}
-
 class EventogyVenuesGoogleAPIAppTests: XCTestCase {
    
     let googleAPIUrl =
         "https://maps.googleapis.com/maps/api/place/findplacefromtext/" +
             "json?input=southbank centre&inputtype=textquery" +
             "&fields=formatted_address,name,geometry" + "&key=\(Constants.GOOGLE_API_KEY.rawValue)"
+   
     var httpClient: HttpClient!
-    let session = MockURLSession()
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        httpClient = HttpClient(session: session)
+        httpClient = HttpClient()
     }
-
+    
     override func tearDown() {
         super.tearDown()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testEncodedURL() {
         // Given
         let urlString = googleAPIUrl
@@ -65,50 +41,15 @@ class EventogyVenuesGoogleAPIAppTests: XCTestCase {
         // Then
         XCTAssertNotEqual(encodingUrl, urlString)
     }
-    func testFetchDataFromGooglePlaceAPIWithURL() {
-        // Given
-        let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        
-        // When
-        guard let url = URL(string: urlString) else {
-            fatalError("URL can't be empty")
-        }
-        httpClient.fetchData(url: url) { (success, response) in
-            // Return data
-        }
-        
-        // Then
-        XCTAssert(session.lastURL == url)
-    }
-    func testURLSessionResume() {
-        // Given
-        let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let dataTask = MockURLSessionDataTask()
-        session.nextDataTask = dataTask
-        
-        // When
-        guard let url = URL(string: urlString) else {
-            fatalError("URL can't be empty")
-        }
-        httpClient.fetchData(url: url) { (success, response) in
-            // Return data
-        }
-        
-        // Then
-        XCTAssert(dataTask.resumeWasCalled)
-    }
-    func testURLSessionRequestReturnData() {
+    func testFetchDataURLSessionRequestReturnsData() {
         
         // Given
         let urlString = googleAPIUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        httpClient = HttpClient() // use URLSession.shared
-        
-        
         let dataExpectation = expectation(description: "Wait for \(urlString) to load.")
         var data: Data?
         
         // When
-        guard let url = URL(string: "http://masilotti.com") else {
+        guard let url = URL(string: urlString) else {
             fatalError("URL can't be empty")
         }
         httpClient.fetchData(url: url) { (success, response) in
@@ -121,6 +62,7 @@ class EventogyVenuesGoogleAPIAppTests: XCTestCase {
         XCTAssertNotNil(data)
         
     }
+    
     /*
     func testFetchLocationsFromGooglePlaceAPI() {
         // Given
@@ -199,5 +141,3 @@ class EventogyVenuesGoogleAPIAppTests: XCTestCase {
     }
  */
 }
-
-//EventogyVenuesGoogleAPIAppTests.defaultTestSuite.run()
