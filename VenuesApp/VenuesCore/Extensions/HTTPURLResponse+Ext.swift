@@ -6,4 +6,9 @@
 //  Copyright © 2019 GEORGE QUENTIN. All rights reserved.
 //
 
-import Foundation
+extension HTTPURLResponse {
+    public convenience init?(url: URL, statusCode: Int) {
+        self.init(url: url, statusCode: statusCode,
+             httpVersion: nil, headerFields: nil)
+    }
+}
