@@ -1,6 +1,6 @@
 //
-//  EventogyVenuesAppTests.swift
-//  EventogyVenuesAppTests
+//  EventogyVenuesFoursquareAPIAppTests.swift
+//  EventogyVenuesFoursquareAPIAppTests
 //
 //  Created by GEORGE QUENTIN on 17/05/2019.
 //  Copyright © 2019 GEORGE QUENTIN. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import EventogyVenuesApp
 
-class EventogyVenuesAppTests: XCTestCase {
+class EventogyVenuesFoursquareAPIAppTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -27,22 +27,25 @@ class EventogyVenuesAppTests: XCTestCase {
         // text is capitalised
     }
     
-    func testCapitalizeFirstLetter() {
+    func testFetchVenue() {
         // Given
-        let word = "my first word"
         
         // When
-        let toFirstCapitalLetter = word.capitalizingFirstLetter()
         
         // Then
-        XCTAssert(toFirstCapitalLetter == "My first word")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testFetchCategories() {
+        // Given
+        
+        // When
+        
+        // Then
     }
-
+    func testFetchVenuePhotos() {
+        // Given
+        
+        // When
+        
+        // Then
+    }
 }
