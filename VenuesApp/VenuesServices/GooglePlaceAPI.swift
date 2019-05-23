@@ -70,7 +70,7 @@ public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
                         let location = geometry["location"] as? [String: AnyObject],
                         let latitude = location["lat"] as? Double,
                         let longitude = location["lng"] as? Double
-                        else { completion(NetworkResult.error("JSON decoding error of of locations.")); return }
+                    else { completion(NetworkResult.error("JSON decoding error of location.")); return }
                     var locationData = ["name":"", "address":"", "latitude":0.0, "longitude":0.0] as [String : Any]
                     locationData["name"] = name
                     locationData["address"] = address

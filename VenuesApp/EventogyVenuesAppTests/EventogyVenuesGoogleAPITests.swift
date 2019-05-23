@@ -159,11 +159,15 @@ class EventogyVenuesGoogleAPIAppTests: XCTestCase {
         // Then
         waitForExpectations(timeout: 5.0, handler: nil)
        
-        guard let data = nextData,
-            let json = try? JSONSerialization.jsonObject(with: data),
+        let json = try? JSONSerialization.jsonObject(with: nextData!)
+        XCTAssertNotNil(json)
+        
+        guard
             let dictionary = json as? [String: Any],
             let locationsCandidates = dictionary["candidates"] as? [Any]
-        else { return }
+        else {
+            fatalError("Decoding error")
+        }
 
         let locationResponses = locationsCandidates as? [[String: AnyObject]]
         XCTAssertNotNil(locationResponses)

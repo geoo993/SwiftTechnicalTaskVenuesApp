@@ -10,6 +10,7 @@
 import XCTest
 import VenuesServices
 import VenuesModel
+import VenuesCore
 @testable import EventogyVenuesApp
 
 class MockURLSessionDataTask: URLSessionDataTaskProtocol {
@@ -95,15 +96,15 @@ class EventogyVenuesURLSessionTests: XCTestCase {
 
     func testFetchDataURLSessionRequestReturnsTheData() {
         // Given
-        let expectedData = "{}".data(using: String.Encoding.utf8)
-        session.nextData = expectedData
-        
-        // When
         guard let url = URL(string: "www.google.com") else {
             fatalError("URL can't be empty")
         }
+        let expectedData = "{}".data(using: String.Encoding.utf8)
+        session.nextData = expectedData
+        session.nextResponse = HTTPURLResponse(url: url, statusCode: 200)
         var actualData: Data?
         
+        // When
         httpClient.fetchData(url: url) { (data, _) in
             actualData = data
         }

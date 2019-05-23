@@ -47,10 +47,14 @@ extension FoursquareAPI {
         if let mainCategories = response["categories"] as? [[String: AnyObject]] {
             for dict in mainCategories {
                 fetchNestedCategories(with: &categories, response: dict)
+                guard let id = dict["id"] as? String,
+                    let name = dict["name"]  as? String,
+                    let shortName = dict["shortName"] as? String
+                else { return }
                 var categoryData = ["id":"", "name":"", "shortName": ""] as [String : Any]
-                categoryData["id"] = dict["id"] as! String
-                categoryData["name"] = dict["name"] as! String
-                categoryData["shortName"] = dict["shortName"] as! String
+                categoryData["id"] = id
+                categoryData["name"] = name
+                categoryData["shortName"] = shortName
                 categories.append(Category(data:categoryData))
             }
         }
@@ -83,22 +87,28 @@ extension FoursquareAPI {
             var venues = [Venue]()
             for groups in venuesResponse["groups"] as! [[String: AnyObject]] {
                 for items in groups["items"] as! [[String: AnyObject]] {
-                    if let venue = items["venue"] as? [String: AnyObject] {
-                        var venueData = ["id":"", "name":"", "address":"",
-                                         "country":"", "distance":0.0,
-                                         "latitude":0.0, "longitude":0.0] as [String : Any]
-                        venueData["id"] = venue["id"] as! String
-                        venueData["name"] = venue["name"] as! String
-                        if let location = venue["location"] as? [String: AnyObject],
-                            let formattedAddress = location["formattedAddress"] as? [String] {
-                            venueData["address"] = formattedAddress.joined(separator: "\n")
-                            venueData["country"] = location["country"] as! String
-                            venueData["distance"] = location["distance"] as! Double
-                            venueData["latitude"] = location["lat"] as! Double
-                            venueData["longitude"] = location["lng"] as! Double
-                        }
-                        venues.append(Venue(data: venueData))
-                    }
+                    guard
+                        let venue = items["venue"] as? [String: AnyObject],
+                        let id = venue["id"] as? String,
+                        let name = venue["name"] as? String,
+                        let location = venue["location"] as? [String: AnyObject],
+                        let formattedAddress = location["formattedAddress"] as? [String],
+                        let country = location["country"] as? String,
+                        let distance = location["distance"] as? Double,
+                        let lat = location["lat"] as? Double,
+                        let lng = location["lng"] as? Double
+                    else { completion(NetworkResult.error("JSON decoding error of venues.")); return }
+                    var venueData = ["id":"", "name":"", "address":"",
+                                     "country":"", "distance":0.0,
+                                     "latitude":0.0, "longitude":0.0] as [String : Any]
+                    venueData["id"] = id
+                    venueData["name"] = name
+                    venueData["address"] = formattedAddress.joined(separator: "\n")
+                    venueData["country"] = country
+                    venueData["distance"] = distance
+                    venueData["latitude"] = lat
+                    venueData["longitude"] = lng
+                    venues.append(Venue(data: venueData))
                 }
             }
             DispatchQueue.main.async(execute: { () -> Void in
@@ -135,9 +145,11 @@ extension FoursquareAPI {
             // Returns photos for a specific venue. To assemble a photo URL, combine the response’s prefix + size + suffix. Ex: https://igx.4sqi.net/img/general/300x500/5163668_xXFcZo7sU8aa1ZMhiQ2kIP7NllD48m7qsSwr1mJnFj4.jpg
             var photosData = [String]()
             if let photos = photosResponse["photos"] as? [String: AnyObject] {
-                for items in photos["items"] as! [[String: AnyObject]] {
-                    let prefix = items["prefix"] as! String
-                    let suffix = items["suffix"] as! String
+                for item in photos["items"] as! [[String: AnyObject]] {
+                    guard
+                        let prefix = item["prefix"] as? String,
+                        let suffix = item["suffix"] as? String
+                    else { completion(NetworkResult.error("JSON decoding error of photos.")); return }
                     photosData.append(prefix + "200x200" + suffix)
                 }
             }

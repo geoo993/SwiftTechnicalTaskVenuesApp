@@ -109,7 +109,6 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     
     // MARK: Fetch venues data at location
     func searchVenueCategories(at location: CLLocationCoordinate2D) {
-        /* TODO: Implement After tests
         FoursquareAPI.shared.fetchVenueCategories(completion:{ [weak self] results in
             guard let this = self else { return }
             switch results {
@@ -119,13 +118,11 @@ class VenuesMapViewController: VenuesMapSearchViewController {
                 fatalError(error)
             }
         })
-        */
     }
     
     // MARK: Fetch venues of particular interest at location
     func searchVenues(of interest: String, at location: CLLocationCoordinate2D) {
         let metersRadius = spanDistance.converted(to: .meters).value
-        /* TODO: Implement After tests
         FoursquareAPI.shared.fetchVenues(using: interest, with: metersRadius, at: location) { [weak self] results in
             switch results {
             case .data(let venuesData):
@@ -140,12 +137,10 @@ class VenuesMapViewController: VenuesMapSearchViewController {
                 fatalError(error)
             }
         }
-        */
     }
     
     // MARK: Fetch photos of selected venue using venueId
     func searchVenuePhotos(of venue: VenueAnnotation) {
-        /* TODO: Implement After tests
         FoursquareAPI.shared.fetchVenuePhotos(using: venue.id, completion: { [weak self] results in
             switch results {
             case .data(let photosData):
@@ -156,7 +151,6 @@ class VenuesMapViewController: VenuesMapSearchViewController {
                 fatalError(error)
             }
         })
-         */
     }
     
     func setVenueImage(with imageUrl: String) {
@@ -215,9 +209,7 @@ extension VenuesMapViewController: MKMapViewDelegate {
             let annotationSubTitle = view.annotation?.subtitle,
             let subTitle = annotationSubTitle,
             let venue = venuesOfInterest.first(where: { $0.name == title && $0.address == subTitle }) {
-            /* TODO: Implement After tests
             FoursquareAPI.shared.openWeb(of: venue.id)
-             */
         }
     }
     

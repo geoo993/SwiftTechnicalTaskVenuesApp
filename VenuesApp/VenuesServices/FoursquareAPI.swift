@@ -10,9 +10,7 @@ import VenuesModel
 import CoreLocation
 
 public final class FoursquareAPI: HttpClient, FoursquareAPINetworkRequest {
-    /*
     public static let shared = FoursquareAPI()
- */
     
     private init() {
         super.init()
