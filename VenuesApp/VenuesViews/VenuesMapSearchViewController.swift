@@ -11,20 +11,20 @@ import MapKit
 
 class VenuesMapSearchViewController: UIViewController {
 
-    @IBOutlet weak var venueImageView: UIImageView!
-    @IBOutlet weak var tableView: VenuesSearchResultTableView!
-    @IBOutlet weak var tableViewBackground: UIView!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private (set) weak var venueImageView: UIImageView!
+    @IBOutlet private weak var tableView: VenuesSearchResultTableView!
+    @IBOutlet private weak var tableViewBackground: UIView!
+    @IBOutlet private (set) weak var mapView: MKMapView!
     
     // Mark: - Main properties
-    var categories : [VenuesModel.Category]?
+    private var categories : [VenuesModel.Category]?
     var venuesOfInterest = [Venue]()
     
     // Mark: - Search bar
-    let search = UISearchController(searchResultsController: nil)
+    private let search = UISearchController(searchResultsController: nil)
     private var searchActive: Bool = false
     private var searchBarFiltered: [VenuesModel.Category] = []
-    var searchVenuesOf: (_ category: String) -> () = { cat in }
+    var searchVenuesOf: (_ category: String) -> () = { _ in }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +62,11 @@ class VenuesMapSearchViewController: UIViewController {
     }
     
     // Mark: Setup table view 
-    func setupTableView() {
+    private func setupTableView() {
         self.tableView.roundCorners([.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 8.0)
         self.tableViewBackground.roundCorners([.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 8.0)
     }
-    func updateTableView(hidden: Bool) {
+    private func updateTableView(hidden: Bool) {
         self.tableView.isHidden = hidden
         self.tableViewBackground.isHidden = hidden
     }
@@ -78,7 +78,7 @@ class VenuesMapSearchViewController: UIViewController {
     }
     
     // Mark: Filter the category array based on search text
-    func filterVenues(for searchText: String) {
+    private func filterVenues(for searchText: String) {
         if let filter = categories?
             .filter( { $0.name.lowercased().contains( searchText.lowercased() )})
             .sorted(by: { $0.name < $1.name }) {
@@ -165,7 +165,7 @@ extension VenuesMapSearchViewController : UISearchBarDelegate {
 
 // MARK: UITableView Delegate
 extension VenuesMapSearchViewController : UITableViewDelegate {
-    func tableViewClearCellsOnEditing() {
+    private func tableViewClearCellsOnEditing() {
         for indexPath in tableView.indexPathsForVisibleRows ?? [] {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -209,7 +209,6 @@ extension VenuesMapSearchViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchActive ? searchBarFiltered.count : 0
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell =
             tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier.rawValue, for: indexPath) as? VenuesSearchResultCell,
@@ -223,5 +222,4 @@ extension VenuesMapSearchViewController : UITableViewDataSource {
  
         return UITableViewCell()
     }
-    
 }

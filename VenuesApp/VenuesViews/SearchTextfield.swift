@@ -8,10 +8,9 @@
 
 import UIKit
 
-@IBDesignable
-class SearchTextfield: UITextField {
+@IBDesignable final class SearchTextfield: UITextField {
 
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable private var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -20,11 +19,11 @@ class SearchTextfield: UITextField {
             layer.masksToBounds = newValue > 0
         }
     }
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -11,7 +11,7 @@ import VenuesServices
 import UIKit
 import MapKit
 
-class VenuesMapViewController: VenuesMapSearchViewController {
+final class VenuesMapViewController: VenuesMapSearchViewController {
     
     // Mark: the maximum span radius for Foursquare is 100,000 meters.
     private let spanDistance = Measurement<UnitLength>(value: 1.2, unit: .miles)
@@ -33,7 +33,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Setup Mapview
-    func setupMapView() {
+    private func setupMapView() {
         // Set the map view's delegate
         mapView.delegate = self
         
@@ -58,7 +58,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
 
     // MARK: Setup Location Manager
-    func setupLocationManager() {
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         if CLLocationManager.locationServicesEnabled() {
@@ -67,7 +67,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Check for Location Services
-    func checkLocationAuthorizationStatus() {
+    private func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedAlways
             || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             
@@ -78,7 +78,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Center user on region
-    func centerOnRegion(with location: CLLocationCoordinate2D, searchType: SearchType) {
+    private func centerOnRegion(with location: CLLocationCoordinate2D, searchType: SearchType) {
         /*
          struct MKCoordinateSpan
          You use the delta values in this structure to indicate the desired zoom level of the map, with smaller delta values corresponding to a higher zoom level.
@@ -108,7 +108,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Fetch venues data at location
-    func searchVenueCategories(at location: CLLocationCoordinate2D) {
+    private func searchVenueCategories(at location: CLLocationCoordinate2D) {
         FoursquareAPI.shared.fetchVenueCategories(completion:{ [weak self] results in
             guard let this = self else { return }
             switch results {
@@ -121,7 +121,7 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Fetch venues of particular interest at location
-    func searchVenues(of interest: String, at location: CLLocationCoordinate2D) {
+    private func searchVenues(of interest: String, at location: CLLocationCoordinate2D) {
         let metersRadius = spanDistance.converted(to: .meters).value
         FoursquareAPI.shared.fetchVenues(using: interest, with: metersRadius, at: location) { [weak self] results in
             switch results {
@@ -129,7 +129,6 @@ class VenuesMapViewController: VenuesMapSearchViewController {
                 guard let this = self else { return }
                 this.removeAnotations()
                 for venue in venuesData {
-                    //print(venue.description)
                     this.mapView.addAnnotation(VenueAnnotation(venue: venue))
                 }
                 this.venuesOfInterest = venuesData
@@ -140,26 +139,26 @@ class VenuesMapViewController: VenuesMapSearchViewController {
     }
     
     // MARK: Fetch photos of selected venue using venueId
-    func searchVenuePhotos(of venue: VenueAnnotation) {
+    private func searchVenuePhotos(of venue: VenueAnnotation) {
         FoursquareAPI.shared.fetchVenuePhotos(using: venue.id, completion: { [weak self] results in
             switch results {
             case .data(let photosData):
-                guard let this = self, let photoUrl = photosData.first else { return }
-                venue.imageUrl = photoUrl
-                this.setVenueImage(with: photoUrl)
+                guard let this = self, let photo = photosData.first else { return }
+                venue.imageUrl = photo.url
+                this.setVenueImage(with: photo.url)
             case .error(let error):
                 fatalError(error)
             }
         })
     }
     
-    func setVenueImage(with imageUrl: String) {
+    private func setVenueImage(with imageUrl: String) {
         NotificationCenter.default
             .post(name: .downloadImageNotification, object: self,
                   userInfo: ["venueImageView": venueImageView as Any, "iconUrl" : imageUrl])
     }
     
-    func removeAnotations() {
+    private func removeAnotations() {
         self.mapView.annotations.forEach {
             if ($0 is MKUserLocation) == false && ($0 is PlaceAnnotation) == false {
                 self.mapView.removeAnnotation($0)

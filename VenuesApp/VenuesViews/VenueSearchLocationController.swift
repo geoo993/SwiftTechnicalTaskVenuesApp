@@ -14,9 +14,9 @@ import VenuesServices
 class VenueSearchLocationController: UIViewController {
     // Mark: - Main properties
     private var places: [Place]?
-    @IBOutlet weak var textfield: SearchTextfield!
-    @IBOutlet weak var searchMessageLabel: UILabel!
-    @IBAction func search(_ sender: SearchButton) {
+    @IBOutlet private weak var textfield: SearchTextfield!
+    @IBOutlet private weak var searchMessageLabel: UILabel!
+    @IBAction private func search(_ sender: SearchButton) {
         if let searchText = textfield.text {
             GooglePlaceAPI.shared.fetchLocations(of: searchText) { [weak self] (results) in
                 switch results {
@@ -78,11 +78,9 @@ extension VenueSearchLocationController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         searchMessageLabel.isHidden = true
     }
-   
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
     }
-
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }

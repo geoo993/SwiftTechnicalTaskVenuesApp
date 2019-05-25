@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable
 class SearchButton: UIButton {
-    @IBInspectable var cornerRadius: CGFloat {
+    @IBInspectable private var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
         }
@@ -20,7 +20,7 @@ class SearchButton: UIButton {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable private var borderWidth: CGFloat {
         get {
             return layer.borderWidth
         }
@@ -29,7 +29,7 @@ class SearchButton: UIButton {
         }
     }
     
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable private var borderColor: UIColor? {
         get {
             return UIColor(cgColor: layer.borderColor ?? UIColor.clear.cgColor)
         }
@@ -38,7 +38,7 @@ class SearchButton: UIButton {
         }
     }
     
-    @IBInspectable var shadowColor: UIColor? {
+    @IBInspectable private var shadowColor: UIColor? {
         get {
             return UIColor(cgColor: layer.shadowColor ?? UIColor.clear.cgColor)
         }
@@ -47,7 +47,7 @@ class SearchButton: UIButton {
         }
     }
     
-    @IBInspectable var shadowOpacity: Float {
+    @IBInspectable private var shadowOpacity: Float {
         get {
             return layer.shadowOpacity
         }
@@ -57,7 +57,7 @@ class SearchButton: UIButton {
     }
     
     /// The shadow offset. Defaults to (0, -3). Animatable.
-    @IBInspectable var shadowOffset: CGSize {
+    @IBInspectable private var shadowOffset: CGSize {
         get {
             return layer.shadowOffset
         }
@@ -67,7 +67,7 @@ class SearchButton: UIButton {
     }
     
     /// The blur radius used to create the shadow. Defaults to 3. Animatable.
-    @IBInspectable var shadowRadius: CGFloat {
+    @IBInspectable private var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
         }
@@ -76,7 +76,7 @@ class SearchButton: UIButton {
         }
     }
     
-    @IBInspectable var masksToBounds: Bool {
+    @IBInspectable private var masksToBounds: Bool {
         get {
             return layer.masksToBounds
         }
@@ -84,11 +84,11 @@ class SearchButton: UIButton {
             layer.masksToBounds = newValue
         }
     }
-    public override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

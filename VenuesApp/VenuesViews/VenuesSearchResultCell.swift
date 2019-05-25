@@ -9,23 +9,18 @@ import VenuesModel
 import UIKit
 
 @IBDesignable
-class VenuesSearchResultCell: UITableViewCell {
-    @IBInspectable var selectedColor: UIColor = UIColor.lightGray
-    @IBInspectable var hightlightedColor: UIColor = UIColor.darkGray
+final class VenuesSearchResultCell: UITableViewCell {
+    @IBInspectable private (set) var selectedColor: UIColor = UIColor.lightGray
+    @IBInspectable private (set) var hightlightedColor: UIColor = UIColor.darkGray
     
-    @IBOutlet weak var venueImageView: UIImageView!
-    @IBOutlet weak var venueImageContainer: UIView!
-    @IBOutlet weak var venueLabel: UILabel!
-    @IBOutlet weak var venueCategoryLabel: UILabel!
+    @IBOutlet private weak var venueImageView: UIImageView!
+    @IBOutlet private weak var venueImageContainer: UIView!
+    @IBOutlet private weak var venueLabel: UILabel!
+    @IBOutlet private weak var venueCategoryLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
