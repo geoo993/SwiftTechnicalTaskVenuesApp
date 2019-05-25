@@ -17,7 +17,7 @@ public protocol GooglePlaceAPINetworkRequest {
 
 public protocol FoursquareAPINetworkRequest {
     func fetchVenueCategories(completion: @escaping (NetworkResult<VenuesModel.Category>) -> () )
-    func fetchVenuePhotos(using venueId: String, completion: @escaping (NetworkResult<String>) -> () )
+    func fetchVenuePhotos(using venueId: String, completion: @escaping (NetworkResult<VenuesModel.Photo>) -> () )
     func openWeb(of venueId: String)
 }
 

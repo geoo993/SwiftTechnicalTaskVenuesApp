@@ -50,7 +50,7 @@ public final class FoursquareAPI: HttpClient, FoursquareAPINetworkRequest {
         }
     }
     // MARK: - Fetch photos of venue with Venue id
-    public func fetchVenuePhotos(using venueId: String, completion: @escaping (NetworkResult<String>) -> () ) {
+    public func fetchVenuePhotos(using venueId: String, completion: @escaping (NetworkResult<VenuesModel.Photo>) -> () ) {
         let urlString =
             "https://api.foursquare.com/v2/venues/\(venueId.lowercased())/photos" +
             "?client_id=\(Constants.FOURSQUARE_CLIENT_ID.rawValue)&client_secret=\(Constants.FOURSQUARE_CLIENT_SECRET.rawValue)&v=20180323" +
@@ -70,6 +70,10 @@ public final class FoursquareAPI: HttpClient, FoursquareAPINetworkRequest {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(PersistencyManager.shared, name: .downloadImageNotification, object: nil)
     }
     
 }

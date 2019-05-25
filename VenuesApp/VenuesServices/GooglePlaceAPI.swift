@@ -51,39 +51,18 @@ public final class GooglePlaceAPI: HttpClient, GooglePlaceAPINetworkRequest {
                         return
                 }
                 // 2
-                let json = try JSONSerialization.jsonObject(with: data)
-                guard
-                    // 3
-                    let dictionary = json as? [String: Any],
-                    // 4
-                    let locationsResponse = dictionary["candidates"] as? [Any]
-                    else {
-                        completion(NetworkResult.error("JSON decoding error of of locations.")); return }
-                //print(dictionary)
-                
-                var places = [VenuesModel.Place]()
-                guard let locationResponses = locationsResponse as? [[String: AnyObject]] else { return }
-                for placeResponse in locationResponses {
-                    guard let name = placeResponse["name"] as? String,
-                        let address = placeResponse["formatted_address"] as? String,
-                        let geometry = placeResponse["geometry"] as? [String: AnyObject],
-                        let location = geometry["location"] as? [String: AnyObject],
-                        let latitude = location["lat"] as? Double,
-                        let longitude = location["lng"] as? Double
-                    else { completion(NetworkResult.error("JSON decoding error of location.")); return }
-                    var locationData = ["name":"", "address":"", "latitude":0.0, "longitude":0.0] as [String : Any]
-                    locationData["name"] = name
-                    locationData["address"] = address
-                    locationData["latitude"] = latitude
-                    locationData["longitude"] = longitude
-                    places.append(Place(data: locationData))
-                }
+                let decoder = JSONDecoder()
+                let candidate = try decoder.decode(Candidate.self, from: data)
+              
                 DispatchQueue.main.async(execute: { () -> Void in
-                    completion(NetworkResult.data(places))
+                    completion(NetworkResult.data(candidate.places))
                 })
             } catch let err {
                 completion(NetworkResult.error("Could not fetch UK location Data with URL: \(err)"))
             }
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(PersistencyManager.shared, name: .downloadImageNotification, object: nil)
+    }
 }
