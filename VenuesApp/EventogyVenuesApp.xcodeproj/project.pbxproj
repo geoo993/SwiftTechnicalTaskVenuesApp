@@ -22,6 +22,7 @@
 		C7B4046C229700CD003D6AB2 /* EventogyVenuesGoogleAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EC2295F759005D48A7 /* EventogyVenuesGoogleAPITests.swift */; };
 		C7B4046D229700CD003D6AB2 /* EventogyVenuesFoursquareAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EB2295F759005D48A7 /* EventogyVenuesFoursquareAPITests.swift */; };
 		C7B4046E229700CD003D6AB2 /* EventogyVenuesAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3487228EEA2A00C7A209 /* EventogyVenuesAppTests.swift */; };
+		C7BB79F02299935600E0D0AF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB79EF2299935600E0D0AF /* Photo.swift */; };
 		C7C0660E229357EA00794599 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0660D229357EA00794599 /* NetworkRequest.swift */; };
 		C7D36029229293620064ED0C /* VenuesModel.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D36027229293620064ED0C /* VenuesModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7D3602C229293620064ED0C /* VenuesModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D36025229293620064ED0C /* VenuesModel.framework */; };
@@ -157,6 +158,7 @@
 		C7B404612296AEA5003D6AB2 /* FoursquareAPI+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoursquareAPI+Ext.swift"; sourceTree = "<group>"; };
 		C7B404632296BF80003D6AB2 /* EventogyVenuesURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventogyVenuesURLSessionTests.swift; sourceTree = "<group>"; };
 		C7B404652296FE85003D6AB2 /* HTTPURLResponse+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Ext.swift"; sourceTree = "<group>"; };
+		C7BB79EF2299935600E0D0AF /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C7C0660D229357EA00794599 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		C7D36025229293620064ED0C /* VenuesModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VenuesModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D36027229293620064ED0C /* VenuesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VenuesModel.h; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				C76E2C742291CA9300451F85 /* Category.swift */,
 				C7EE1ACB228FDCE0007FA8BA /* Venue.swift */,
 				C715006C2292EEF800F50C7C /* Place.swift */,
+				C7BB79EF2299935600E0D0AF /* Photo.swift */,
 				C7D36027229293620064ED0C /* VenuesModel.h */,
 				C7D36028229293620064ED0C /* Info.plist */,
 			);
@@ -762,6 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BB79F02299935600E0D0AF /* Photo.swift in Sources */,
 				C7D36086229294DC0064ED0C /* AnnotationType.swift in Sources */,
 				C7D36082229294B20064ED0C /* Venue.swift in Sources */,
 				C7D36081229294A10064ED0C /* SearchType.swift in Sources */,
@@ -977,6 +981,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VenuesViews/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1005,6 +1010,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = VenuesViews/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1289,6 +1295,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
