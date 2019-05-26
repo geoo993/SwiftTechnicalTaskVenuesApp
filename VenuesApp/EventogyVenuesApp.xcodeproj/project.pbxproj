@@ -14,7 +14,6 @@
 		C71500712292EFDB00F50C7C /* GooglePlaceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71500702292EFDB00F50C7C /* GooglePlaceAPI.swift */; };
 		C71500732293079300F50C7C /* VenueSearchLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71500722293079300F50C7C /* VenueSearchLocationController.swift */; };
 		C75693F02295FA43005D48A7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75693EF2295FA43005D48A7 /* Constants.swift */; };
-		C7B4045E22969782003D6AB2 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4045D22969782003D6AB2 /* URLSessionProtocol.swift */; };
 		C7B404602296A1F4003D6AB2 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4045F2296A1F4003D6AB2 /* HTTPClient.swift */; };
 		C7B404622296AEA5003D6AB2 /* FoursquareAPI+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404612296AEA5003D6AB2 /* FoursquareAPI+Ext.swift */; };
 		C7B404662296FE85003D6AB2 /* HTTPURLResponse+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B404652296FE85003D6AB2 /* HTTPURLResponse+Ext.swift */; };
@@ -68,6 +67,7 @@
 		C7EE3473228EEA2900C7A209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3472228EEA2900C7A209 /* AppDelegate.swift */; };
 		C7EE347D228EEA2A00C7A209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7EE347B228EEA2A00C7A209 /* LaunchScreen.storyboard */; };
 		C7EE3493228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE3492228EEA2B00C7A209 /* EventogyVenuesAppUITests.swift */; };
+		C7F45BBE229AC22C00130D85 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4045D22969782003D6AB2 /* URLSessionProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				C75693EF2295FA43005D48A7 /* Constants.swift */,
+				C7B4045D22969782003D6AB2 /* URLSessionProtocol.swift */,
 				C7C0660D229357EA00794599 /* NetworkRequest.swift */,
 				C7D36085229294DC0064ED0C /* AnnotationType.swift */,
 				C76E2C902291EE0D00451F85 /* SearchType.swift */,
@@ -326,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				C7B4045F2296A1F4003D6AB2 /* HTTPClient.swift */,
-				C7B4045D22969782003D6AB2 /* URLSessionProtocol.swift */,
 				C7EE1AD3228FF9EF007FA8BA /* PersistencyManager.swift */,
 				C71500702292EFDB00F50C7C /* GooglePlaceAPI.swift */,
 				C7EE1AD7228FFA1D007FA8BA /* FoursquareAPI.swift */,
@@ -765,6 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7F45BBE229AC22C00130D85 /* URLSessionProtocol.swift in Sources */,
 				C7BB79F02299935600E0D0AF /* Photo.swift in Sources */,
 				C7D36086229294DC0064ED0C /* AnnotationType.swift in Sources */,
 				C7D36082229294B20064ED0C /* Venue.swift in Sources */,
@@ -805,7 +806,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7B4045E22969782003D6AB2 /* URLSessionProtocol.swift in Sources */,
 				C7D36069229293EF0064ED0C /* FoursquareAPI.swift in Sources */,
 				C7B404602296A1F4003D6AB2 /* HTTPClient.swift in Sources */,
 				C7D3606A229293EF0064ED0C /* PersistencyManager.swift in Sources */,

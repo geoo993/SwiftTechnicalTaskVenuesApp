@@ -5,6 +5,8 @@
 //  Created by GEORGE QUENTIN on 23/05/2019.
 //  Copyright © 2019 GEORGE QUENTIN. All rights reserved.
 //
+import VenuesModel
+
 public enum NetworkError: Error {
     case dataTaskError
     case badResponse

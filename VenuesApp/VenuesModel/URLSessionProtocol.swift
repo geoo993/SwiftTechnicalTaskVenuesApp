@@ -20,8 +20,6 @@ extension URLSession: URLSessionProtocol {
 }
 
 
-
-
 public protocol URLSessionDataTaskProtocol {
     func resume()
 }
