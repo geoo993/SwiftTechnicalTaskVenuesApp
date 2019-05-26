@@ -38,9 +38,7 @@ extension VenueResponse: Decodable
     public init(from decoder: Decoder) throws
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        print(container.allKeys)
         let response = try container.nestedContainer(keyedBy: GroupsCodingKeys.self, forKey: .response)
-        print(response.allKeys)
         let groups = try response.decode([Group].self, forKey: .groups)
         venues = groups.compactMap({ $0.items.compactMap({ $0.venue }) }).flatMap({ $0 })
     }

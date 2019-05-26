@@ -22,11 +22,14 @@ extension AnnotationType {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: self.rawValue)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+                let disclosureView =  UIButton(type: .detailDisclosure)
+                disclosureView.tintColor = UIColor.eventogyTheme
+                view.rightCalloutAccessoryView = disclosureView as UIView
                 view.image = nil
                 view.pinTintColor = UIColor.eventogyTheme
                 let detailLabel = UILabel()
                 detailLabel.numberOfLines = 0
+                detailLabel.backgroundColor = .clear
                 detailLabel.font = detailLabel.font.withSize(12)
                 if let subtitle = annotation.subtitle {
                     detailLabel.text = subtitle
@@ -44,13 +47,16 @@ extension AnnotationType {
                 view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: self.rawValue)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+                let disclosureView =  UIButton(type: .detailDisclosure)
+                disclosureView.tintColor = UIColor.eventogyTheme
+                view.rightCalloutAccessoryView = disclosureView as UIView
                 view.image = nil
                 view.glyphImage = image
                 view.markerTintColor = UIColor.eventogyTheme
                 
                 let detailLabel = UILabel()
                 detailLabel.numberOfLines = 0
+                detailLabel.backgroundColor = .clear
                 detailLabel.font = detailLabel.font.withSize(12)
                 if let subtitle = annotation.subtitle {
                     detailLabel.text = subtitle
