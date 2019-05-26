@@ -71,5 +71,16 @@ Futhermore, the user can tap on the callout bubble and get more information abou
 <img src="Images/part3.png" width="334" height="750" >                    <img src="Images/part4.png" width="334" height="750" >
 
 
-### Features and Approaches:
-
+### Approaches:
+* Followed Model-View-ViewModel pattern by modularising the app using different frameworks consisting of VenuesModel, VenuesViews, VenuesViewModel, including some supplementary modules such as VenuesServices and VenuesCore.
+* Followed some SOLID principles such as single responsibility, open closed principle, interface segregation and dependency inversion. 
+* Followed Dependency Injection principle my making some classes not responsible for handling the dependencies of their properties. A great example is the URLSessionProtocol and the injection into the HttpClient class which is reusable and testable by allowing any object that conforms to URLSessionProtocol to be injected in the class.
+* Followed the Test Driven Development principle, by writing the ViewModel and Network logic first and then testing them to validate their usage.
+* Followed Some design patterns such as
+     - Observable pattern using NotificationCentre to fetch image data from the web and updating their UI objects once the images are retrieved and cached.
+     - Singleton pattern to make one instance of the GoogleAPI and FoursquareAPI classes.
+     - Decorator design pattern by extending many classed as opposed to modifying them, which didn’t break their original functionality.
+     - Facade design pattern by bringing some core logic of the app into a central class. FoursquareAPI and GooglePlaceAPI classes are great examples.
+* Used Decodable to decode and read data from google places and foursquare API.
+* Used [weak self] in closures to break strong references between objects and avoid any retain cycles.
+*  Followed the Swift style guide for code styling and added MARK:- comments in the viewcontrollers to detail the functionality of each function and property.
