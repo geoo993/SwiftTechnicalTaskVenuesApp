@@ -32,6 +32,10 @@ The app uses both google places and foursquare api to find locations and venues 
 The user will first need to search a desired location which will be queried and handled by google places and from that search, we will retrieve the location details of the search such as address and location coordinates.
 This information will then be processed and allow us to place the user on the map to that searched location.
 
+
+<img src="Images/part1.png" width="334" height="750" >                  <img src="Images/part2.png" width="334" height="750" >
+
+
 For this to happen, you will need to get a Google Places API Key from the Google Cloud Platform by simply creating a new project on the platform and coping the API key from your project credentials.
 
 Copy and paste the key in the GOOGLE_API_KEY enum case in this Constants file in the [VenuesModel](/VenuesApp/VenuesModel/Constants.swift) folder.
@@ -53,8 +57,8 @@ Copy and paste the keys in their reprective fields, in the FOURSQUARE_CLIENT_ID 
 ```swift
 public enum Constants: String {
     ...
-    case FOURSQUARE_CLIENT_ID = "ENTER_FOURSQUAR_CLIENT_ID"
-    case FOURSQUARE_CLIENT_SECRET = "ENTER_FOURSQUAR_CLIENT_SECRET"
+    case FOURSQUARE_CLIENT_ID = "ENTER_FOURSQUARE_CLIENT_ID"
+    case FOURSQUARE_CLIENT_SECRET = "ENTER_FOURSQUARE_CLIENT_SECRET"
 ```
 
 Foursquare provides many options for finding venues around a given location. In our case, it helps us find venues around the searched location, and return venues based on the user activity of interest. 
@@ -62,4 +66,10 @@ Foursquare provides many options for finding venues around a given location. In 
 After this search we get several venues (pin annotations on the map) provided by foursquare and from here we can select the venue of interest and a callout bubble will pop up showing the address of the venue. 
 
 Futhermore, the user can tap on the callout bubble and get more information about the selected place of interest on the web.
+
+
+<img src="Images/part3.png" width="334" height="750" >                    <img src="Images/part4.png" width="334" height="750" >
+
+
+### Features and Approaches:
 
